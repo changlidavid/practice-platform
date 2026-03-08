@@ -15,7 +15,7 @@ python -m app.cli run sample_1
 1. Create runtime env file:
 
 ```bash
-cp .env.example .env
+cp -n .env.example .env
 ```
 
 2. Start:
