@@ -13,6 +13,7 @@ COPY pyproject.toml ./
 COPY app ./app
 COPY statements ./statements
 COPY 9021 ./9021
+COPY final ./final
 COPY README.md ./README.md
 
 RUN pip install --upgrade pip && pip install .

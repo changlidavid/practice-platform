@@ -1,52 +1,8 @@
 # Practice CLI + Web UI
 
-Offline Python practice platform with:
-- CLI workflows (`list`, `open`, `run`, `import`)
-- FastAPI web UI
-- doctest-based grading runner
-- SQLite persistence
-- startup bundle importer (single or multi-bundle)
-- optional OTP email authentication
+Local offline practice runner for doctest-based Python problems.
 
-It is designed for local-first practice and reproducible deployment (native Python or Docker).
-
-## Quick Start
-
-### always remember to modify the contents of the .env file according to the prompts to match your own settings before proceeding to the next step!
-
-### 1. Clone and install
-
-```bash
-git clone <your-repo-url>
-cd 9021tasks
-python -m venv .venv
-source .venv/bin/activate
-pip install -U pip
-pip install -e .
-```
-
-### 2. Configure environment
-
-```bash
-cp -n .env.example .env
-```
-
-For local development without real SMTP, you can set:
-
-```bash
-OTP_DEV_MODE=true
-COOKIE_SECURE=false
-```
-
-### 3. Run web app
-
-```bash
-python -m app.web
-```
-
-Open `http://127.0.0.1:8000`.
-
-### 4. Run CLI
+## Local CLI Quickstart
 
 ```bash
 python -m app.cli list

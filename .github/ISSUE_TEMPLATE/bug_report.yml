@@ -1,0 +1,48 @@
+name: Bug report
+description: Report a reproducible bug
+title: "[Bug] "
+labels:
+  - bug
+body:
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: What is broken?
+      placeholder: A clear and concise bug description.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact steps to trigger the issue.
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Python version, Docker/non-Docker, relevant config flags.
+      placeholder: "Ubuntu 24.04, Python 3.12, Docker compose prod-like"
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / traceback
+      description: Paste relevant logs (redact secrets).
