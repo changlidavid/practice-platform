@@ -1,0 +1,381 @@
+:root {
+  --bg: #f6f7f8;
+  --panel: #ffffff;
+  --line: #d9dde3;
+  --text: #1f2937;
+  --muted: #64748b;
+  --accent: #0f766e;
+  --pass: #166534;
+  --fail: #991b1b;
+  --never: #475569;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+  color: var(--text);
+  background: linear-gradient(120deg, #eef4f8 0%, #f8f8f0 100%);
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--line);
+  background: var(--panel);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 18px;
+}
+
+#global-status {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.session-email {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#logout-btn {
+  border: 1px solid #334155;
+  background: #334155;
+  color: #fff;
+  border-radius: 6px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  height: calc(100vh - 52px);
+  min-height: 0;
+}
+
+.problem-list {
+  border-right: 1px solid var(--line);
+  background: var(--panel);
+  padding: 10px;
+  overflow: auto;
+}
+
+.problem-list h2 {
+  margin: 6px 8px 12px;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.problem-item {
+  width: 100%;
+  text-align: left;
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 8px;
+  padding: 8px;
+  margin-bottom: 8px;
+  cursor: pointer;
+}
+
+.problem-item.active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.12);
+}
+
+.problem-item .slug {
+  font-weight: 600;
+  display: block;
+}
+
+.problem-item .meta {
+  display: flex;
+  gap: 8px;
+  margin-top: 3px;
+  font-size: 12px;
+}
+
+.problem-item .last-run {
+  display: block;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.status {
+  font-weight: 700;
+}
+
+.status-pass {
+  color: var(--pass);
+}
+
+.status-fail,
+.status-error {
+  color: var(--fail);
+}
+
+.status-never {
+  color: var(--never);
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 0;
+}
+
+.split {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.split.right {
+  height: 100%;
+}
+
+.panel-header {
+  padding: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panel-header h2 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.panel-header span {
+  display: block;
+  margin-top: 4px;
+  color: var(--muted);
+  font-size: 12px;
+  word-break: break-all;
+}
+
+.markdown {
+  padding: 12px;
+  overflow: auto;
+  line-height: 1.45;
+  min-height: 0;
+}
+
+.markdown pre {
+  background: #f7f9fc;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 8px;
+  overflow: auto;
+}
+
+#editor {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+  position: relative;
+}
+
+#editor-fallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  margin: 0;
+  padding: 10px;
+  resize: none;
+  overflow: auto;
+  font-family: "JetBrains Mono", "Consolas", monospace;
+  font-size: 13px;
+  background: #fff;
+  color: #111827;
+}
+
+#monaco-root {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: none;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+  position: sticky;
+  bottom: 0;
+  background: var(--panel);
+  border-top: 1px solid var(--line);
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.actions button {
+  border: 1px solid #0f766e;
+  background: #0f766e;
+  color: #fff;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+#save-btn {
+  background: #155e75;
+  border-color: #155e75;
+}
+
+#run-output {
+  margin: 0;
+  padding: 10px;
+  border-top: 1px solid var(--line);
+  background: #0f172a;
+  color: #e2e8f0;
+  min-height: 90px;
+  max-height: 30vh;
+  overflow: auto;
+  font-family: "JetBrains Mono", "Consolas", monospace;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+@media (max-width: 1000px) {
+  .layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: calc(100vh - 52px);
+  }
+
+  .problem-list {
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
+    max-height: 220px;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+    height: auto;
+    min-height: 0;
+  }
+}
+
+@media (max-height: 720px) {
+  #run-output {
+    min-height: 72px;
+    max-height: 150px;
+  }
+}
+
+.login-page {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(120deg, #eef4f8 0%, #f8f8f0 100%);
+  font-family: "Source Sans 3", "Segoe UI", sans-serif;
+}
+
+.login-card {
+  width: min(92vw, 460px);
+  border: 1px solid var(--line);
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.login-card h1 {
+  margin: 0 0 14px;
+  font-size: 24px;
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.tab-btn {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: #0f172a;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.tab-btn.is-active {
+  border-color: #0f766e;
+  background: #0f766e;
+  color: #fff;
+}
+
+.auth-panel {
+  margin-top: 6px;
+}
+
+.auth-subtabs {
+  margin-top: 0;
+}
+
+.login-row {
+  display: flex;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.login-row input {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 9px 10px;
+  font-size: 14px;
+}
+
+.login-row button {
+  border: 1px solid #0f766e;
+  background: #0f766e;
+  color: #fff;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#login-status {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  min-height: 20px;
+}
+
+.auth-hint {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}

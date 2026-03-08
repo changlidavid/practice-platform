@@ -1,0 +1,46 @@
+Screen {
+    layout: vertical;
+}
+
+#filters {
+    height: 3;
+    layout: horizontal;
+    padding: 0 1;
+}
+
+#search {
+    width: 1fr;
+    margin-right: 1;
+}
+
+#solved_filter {
+    width: 18;
+    margin-right: 1;
+}
+
+#bundle_filter {
+    width: 24;
+}
+
+#problems {
+    height: 1fr;
+}
+
+#status {
+    height: 2;
+    padding: 0 1;
+}
+
+#detail {
+    height: 10;
+    border-top: solid $accent;
+    padding: 0 1;
+    overflow-y: auto;
+}
+
+#logs {
+    height: 10;
+    border-top: solid $warning;
+    padding: 0 1;
+    overflow-y: auto;
+}

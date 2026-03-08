@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Login | Local Practice</title>
+  <link rel="stylesheet" href="../static/web.css">
+</head>
+
+<body class="login-page">
+  <main class="login-card">
+    <h1>Local Practice Authentication</h1>
+    <p>Register a new account or login with password or verification code.</p>
+
+    <div class="auth-tabs" role="tablist" aria-label="Auth mode">
+      <button id="tab-register" class="tab-btn" type="button">Register</button>
+      <button id="tab-login" class="tab-btn is-active" type="button">Login</button>
+    </div>
+
+    <section id="register-panel" class="auth-panel" hidden>
+      <div class="login-row">
+        <input id="register-email" type="email" autocomplete="email" placeholder="you@example.com">
+        <button id="register-send-code-btn" type="button">Send code</button>
+      </div>
+      <div class="login-row">
+        <input id="register-password" type="password" autocomplete="new-password" placeholder="Password (min 8 chars)">
+      </div>
+      <div class="login-row">
+        <input id="register-code" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit code">
+        <button id="register-verify-btn" type="button">Create account</button>
+      </div>
+    </section>
+
+    <section id="login-panel" class="auth-panel">
+      <div class="auth-tabs auth-subtabs" role="tablist" aria-label="Login method">
+        <button id="tab-login-password" class="tab-btn is-active" type="button">Password</button>
+        <button id="tab-login-code" class="tab-btn" type="button">Verification Code</button>
+      </div>
+
+      <div id="login-password-panel">
+        <div class="login-row">
+          <input id="login-password-email" type="email" autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div class="login-row">
+          <input id="login-password-value" type="password" autocomplete="current-password" placeholder="Password">
+          <button id="login-password-btn" type="button">Login</button>
+        </div>
+      </div>
+
+      <div id="login-code-panel" hidden>
+        <div class="login-row">
+          <input id="login-code-email" type="email" autocomplete="email" placeholder="you@example.com">
+          <button id="login-code-send-btn" type="button">Send code</button>
+        </div>
+        <div class="login-row">
+          <input id="login-code-value" type="text" inputmode="numeric" maxlength="6" placeholder="6-digit code">
+          <button id="login-code-verify-btn" type="button">Verify login</button>
+        </div>
+      </div>
+    </section>
+
+    <div id="login-status" aria-live="polite"></div>
+    <div class="auth-hint">
+      Existing users can login via password or verification code.
+    </div>
+  </main>
+
+  <script src="../static/login.js"></script>
+</body>
+
+</html>

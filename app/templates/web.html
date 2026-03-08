@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice UI</title>
+  <link rel="stylesheet" href="../static/web.css">
+</head>
+
+<body data-initial-problem-id="{{ selected_id | default('', true) }}">
+  <header class="topbar">
+    <h1>Local Practice</h1>
+    <div class="topbar-right">
+      <div id="global-status">Ready</div>
+      <span class="session-email">{{ session_email }}</span>
+      <button id="logout-btn" type="button">Logout</button>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="problem-list">
+      <h2>Problems</h2>
+      <div id="problem-items">
+        {% for row in rows %}
+        <button class="problem-item{% if row.id == selected_id %} active{% endif %}" data-problem-id="{{ row.id }}"
+          type="button">
+          <span class="slug">{{ row.slug }}</span>
+          <span class="meta">
+            <span class="status status-{{ row.last_status|lower }}">
+              {{ row.last_status|upper }}
+            </span>
+            <span class="attempts">{{ row.attempts }}x</span>
+          </span>
+          <span class="last-run">{{ row.last_run or '-' }}</span>
+        </button>
+        {% endfor %}
+      </div>
+    </aside>
+
+    <section class="workspace">
+      <div class="split left">
+        <div class="panel-header">
+          <h2 id="statement-title">Statement</h2>
+          <span id="statement-path"></span>
+        </div>
+        <article id="statement-content" class="markdown"></article>
+      </div>
+
+      <div class="split right">
+        <div class="panel-header">
+          <h2 id="editor-title">Solution</h2>
+          <span id="solution-path"></span>
+        </div>
+
+        <div id="editor" aria-label="Solution editor">
+          <textarea id="editor-fallback" spellcheck="false" aria-label="Solution editor fallback"></textarea>
+          <div id="monaco-root" aria-hidden="true"></div>
+        </div>
+
+        <div class="actions">
+          <button id="save-btn" type="button">Save</button>
+          <button id="run-btn" type="button">Run</button>
+        </div>
+
+        <pre id="run-output"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const raw = document.body.dataset.initialProblemId;
+    window.__INITIAL_PROBLEM_ID__ = raw ? Number(raw) : null;
+  </script>
+
+  <script src="../static/vendor/monaco/min/vs/loader.js"></script>
+  <script src="../static/web.js"></script>
+</body>
+
+</html>
