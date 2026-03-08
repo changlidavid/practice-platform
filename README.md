@@ -15,8 +15,9 @@ It is designed for local-first practice and reproducible deployment (native Pyth
 ### 1. Clone and install
 
 ```bash
-git clone <your-repo-url>
-cd 9021tasks
+git clone https://github.com/changlidavid/practice-platform.git
+cd practice-platform
+
 python -m venv .venv
 source .venv/bin/activate
 pip install -U pip
@@ -54,11 +55,11 @@ python -m app.cli run sample_1
 
 ## Docker Deployment
 
-### Development compose
+### Docker Quick Start (Recommended)
 
 ```bash
 cp -n .env.example .env
-docker compose up -d --build
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 ```
 
 Open `http://127.0.0.1:8000`.
@@ -66,24 +67,7 @@ Open `http://127.0.0.1:8000`.
 Useful commands:
 
 ```bash
-docker compose logs -f web
-docker compose down
-```
-
-Defaults in [`docker-compose.yml`](/home/changli/Desktop/9021tasks/docker-compose.yml):
-- bind mount `./.practice:/data`
-- `COOKIE_SECURE=false`
-- suitable for local HTTP testing
-
-### Prod-like compose (override)
-
-```bash
-docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
-```
-
-Stop:
-
-```bash
+docker compose -f docker-compose.yml -f docker-compose.prod.yml logs -f web
 docker compose -f docker-compose.yml -f docker-compose.prod.yml down
 ```
 
@@ -91,6 +75,24 @@ Overrides in [`docker-compose.prod.yml`](/home/changli/Desktop/9021tasks/docker-
 - named volume `practice_data` for `/data`
 - `COOKIE_SECURE=true` by default
 - healthcheck for `/login`
+
+### Optional: Development Compose (Bind Mount)
+
+Use this only if you specifically want host-visible runtime data and your local filesystem permissions are configured for bind mounts:
+
+```bash
+docker compose up -d --build
+```
+
+Defaults in [`docker-compose.yml`](/home/changli/Desktop/9021tasks/docker-compose.yml):
+- bind mount `./.practice:/data`
+- `COOKIE_SECURE=false`
+- suitable for local HTTP testing when permissions are compatible
+
+### Known Issue (Dev Bind Mount)
+
+On some machines/filesystems, bind-mounted `./.practice:/data` can fail on fresh clones due to local ownership/permission behavior.  
+If that happens, use the recommended prod-like compose flow above (named volume `practice_data`) instead of bind mount mode.
 
 ### Migrating local data to `practice_data` volume
 
