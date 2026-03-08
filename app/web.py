@@ -308,7 +308,34 @@ def _require_session_api(request: Request) -> str:
 
 def _bootstrap(conn, paths) -> None:
     db.init_db(conn)
-    importer.ensure_imported(conn, paths)
+    raw_paths = os.environ.get("PRACTICE_BUNDLE_PATHS", "").strip()
+    if raw_paths:
+        candidates: list[Path] = []
+        seen: set[str] = set()
+        for raw_part in raw_paths.split(","):
+            part = raw_part.strip()
+            if not part:
+                continue
+            source_root = Path(part).expanduser()
+            if not source_root.is_absolute():
+                source_root = paths.repo_root / source_root
+            resolved = source_root.resolve()
+            key = str(resolved)
+            if key in seen:
+                continue
+            seen.add(key)
+            candidates.append(resolved)
+    else:
+        candidates = [paths.source_bundle]
+
+    for source_root in candidates:
+        if not source_root.exists() or not source_root.is_dir():
+            continue
+        try:
+            importer.import_bundle(conn, paths, source_root)
+        except (FileNotFoundError, RuntimeError):
+            # Keep startup resilient when a configured bundle path is invalid.
+            continue
 
 
 def _normalize_row(row: Any) -> dict[str, Any]:

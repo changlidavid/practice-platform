@@ -93,6 +93,13 @@ Runner hardening options:
 - `PRACTICE_DOCTEST_TIMEOUT_SECONDS` (default `5`)
 - `PRACTICE_DOCTEST_OUTPUT_MAX_BYTES` (default `262144` per stream)
 
+Bundle import options at startup:
+- `PRACTICE_BUNDLE_PATH` (single bundle, legacy behavior, default `9021`)
+- `PRACTICE_BUNDLE_PATHS` (comma-separated bundles, preferred for multiple imports)
+  - example: `PRACTICE_BUNDLE_PATHS=9021,final`
+  - relative paths resolve from repo root
+  - missing paths are skipped safely
+
 ## Migration Note: Bind Mount -> Named Volume
 
 When switching from dev bind mount (`./.practice:/data`) to prod-like named volume (`practice_data`), existing host data is not auto-copied.
@@ -107,6 +114,9 @@ docker run --rm \
 ```
 
 Then start prod-like compose.
+
+If you use `PRACTICE_BUNDLE_PATHS=9021,final` in Docker, both directories must exist in the container runtime.
+Current image includes `9021/` by default; `final/` must be mounted or added to the image build.
 
 ## Notes
 
