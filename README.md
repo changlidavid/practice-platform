@@ -1,8 +1,50 @@
 # Practice CLI + Web UI
 
-Local offline practice runner for doctest-based Python problems.
+Offline Python practice platform with:
+- CLI workflows (`list`, `open`, `run`, `import`)
+- FastAPI web UI
+- doctest-based grading runner
+- SQLite persistence
+- startup bundle importer (single or multi-bundle)
+- optional OTP email authentication
 
-## Local CLI Quickstart
+It is designed for local-first practice and reproducible deployment (native Python or Docker).
+
+## Quick Start
+
+### 1. Clone and install
+
+```bash
+git clone <your-repo-url>
+cd 9021tasks
+python -m venv .venv
+source .venv/bin/activate
+pip install -U pip
+pip install -e .
+```
+
+### 2. Configure environment
+
+```bash
+cp -n .env.example .env
+```
+
+For local development without real SMTP, you can set:
+
+```bash
+OTP_DEV_MODE=true
+COOKIE_SECURE=false
+```
+
+### 3. Run web app
+
+```bash
+python -m app.web
+```
+
+Open `http://127.0.0.1:8000`.
+
+### 4. Run CLI
 
 ```bash
 python -m app.cli list
@@ -10,55 +52,30 @@ python -m app.cli open sample_1
 python -m app.cli run sample_1
 ```
 
-## Quick Deploy
+## Docker Deployment
 
-```bash
-git clone https://github.com/changlidavid/practice-platform.git
-cd practice-platform
-
-## (Remember to modify the contents of the .env file according to the prompts to match your own settings before proceeding to the next step!)
-cp .env.example .env 
-
-docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
-
-## Docker Quickstart (Development)
-
-1. Create runtime env file:
+### Development compose
 
 ```bash
 cp -n .env.example .env
-```
-
-2. Start:
-
-```bash
 docker compose up -d --build
 ```
 
-3. Open:
+Open `http://127.0.0.1:8000`.
 
-- http://127.0.0.1:8000
-
-4. Logs:
+Useful commands:
 
 ```bash
 docker compose logs -f web
-```
-
-5. Stop:
-
-```bash
 docker compose down
 ```
 
-Development defaults:
-- `docker-compose.yml` bind-mounts `./.practice:/data` (host data visible inside container).
-- `COOKIE_SECURE=false` is suitable for local HTTP.
-- `OTP_DEV_MODE` can be true for log-only OTP fallback when SMTP is missing.
+Defaults in [`docker-compose.yml`](/home/changli/Desktop/9021tasks/docker-compose.yml):
+- bind mount `./.practice:/data`
+- `COOKIE_SECURE=false`
+- suitable for local HTTP testing
 
-## Docker Prod-Like Compose (Minimal Override)
-
-Use layered compose files:
+### Prod-like compose (override)
 
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
@@ -70,52 +87,12 @@ Stop:
 docker compose -f docker-compose.yml -f docker-compose.prod.yml down
 ```
 
-Prod-like overrides in `docker-compose.prod.yml`:
-- switch `/data` to named volume `practice_data`
+Overrides in [`docker-compose.prod.yml`](/home/changli/Desktop/9021tasks/docker-compose.prod.yml):
+- named volume `practice_data` for `/data`
 - `COOKIE_SECURE=true` by default
-- `OTP_DEV_MODE=false` by default
-- add service healthcheck (uses Python stdlib, no `curl`/`wget` dependency)
+- healthcheck for `/login`
 
-Health status:
-
-```bash
-docker compose -f docker-compose.yml -f docker-compose.prod.yml ps
-```
-
-## Environment Variables (`.env`)
-
-Required for real email OTP:
-- `SMTP_HOST`
-- `SMTP_PORT`
-- `SMTP_USERNAME`
-- `SMTP_PASSWORD`
-- `SMTP_FROM`
-- `SMTP_USE_TLS`
-
-Important flags:
-- `OTP_DEV_MODE`
-  - `true`: dev fallback can print OTP codes in logs when SMTP is not configured.
-  - `false`: intended for real SMTP delivery.
-- `COOKIE_SECURE`
-  - `false`: local HTTP development.
-  - `true`: HTTPS deployments.
-
-Runner hardening options:
-- `PRACTICE_DOCTEST_TIMEOUT_SECONDS` (default `5`)
-- `PRACTICE_DOCTEST_OUTPUT_MAX_BYTES` (default `262144` per stream)
-
-Bundle import options at startup:
-- `PRACTICE_BUNDLE_PATH` (single bundle, legacy behavior, default `9021`)
-- `PRACTICE_BUNDLE_PATHS` (comma-separated bundles, preferred for multiple imports)
-  - example: `PRACTICE_BUNDLE_PATHS=9021,final`
-  - relative paths resolve from repo root
-  - missing paths are skipped safely
-
-## Migration Note: Bind Mount -> Named Volume
-
-When switching from dev bind mount (`./.practice:/data`) to prod-like named volume (`practice_data`), existing host data is not auto-copied.
-
-One-time copy:
+### Migrating local data to `practice_data` volume
 
 ```bash
 docker run --rm \
@@ -124,13 +101,53 @@ docker run --rm \
   alpine sh -c "cp -a /from/. /to/"
 ```
 
-Then start prod-like compose.
+## Environment Variables
 
-If you use `PRACTICE_BUNDLE_PATHS=9021,final` in Docker, both directories must exist in the container runtime.
-Current image includes `9021/` by default; `final/` must be mounted or added to the image build.
+Configured in `.env` (see `.env.example`).
 
-## Notes
+| Variable | Required | Default | Purpose |
+| --- | --- | --- | --- |
+| `PRACTICE_HOME` | No | `/data` in Docker, `.practice` locally | Workspace root (DB, runs, solutions, assets). |
+| `PRACTICE_BUNDLE_PATH` | No | `9021` | Legacy single startup bundle path. |
+| `PRACTICE_BUNDLE_PATHS` | No | unset | Comma-separated bundle paths, e.g. `9021,final` (takes precedence over single path). |
+| `OTP_DEV_MODE` | No | `false` | If true, allows dev OTP fallback when SMTP is missing. |
+| `COOKIE_SECURE` | No | `false` dev / `true` prod-like | Secure session cookies (enable under HTTPS). |
+| `SMTP_HOST` | Yes for real email OTP | unset | SMTP host (example: Gmail SMTP). |
+| `SMTP_PORT` | No | `587` | SMTP port. |
+| `SMTP_USERNAME` | Usually yes | unset | SMTP login username. |
+| `SMTP_PASSWORD` | Usually yes | unset | SMTP login password/app password. |
+| `SMTP_FROM` | Yes for real email OTP | unset | From address used for OTP email. |
+| `SMTP_USE_TLS` | No | `true` | Use STARTTLS for SMTP connection. |
+| `PRACTICE_DOCTEST_TIMEOUT_SECONDS` | No | `5` | Max doctest runtime per attempt. |
+| `PRACTICE_DOCTEST_OUTPUT_MAX_BYTES` | No | `262144` | Max captured bytes per stream (`stdout`/`stderr`). |
 
-- Problems are imported from `9021/` by default.
-- Statement markdown files are generated on demand under `statements/`.
-- Web `Run` uses the same doctest runner as CLI `run`.
+Security note:
+- Never commit real credentials in `.env`.
+- Use `.env.example` as the shared template.
+
+## Screenshots
+
+Add screenshots under `docs/screenshots/` and reference them here.
+
+Example placeholders:
+- `docs/screenshots/login.png`
+- `docs/screenshots/web-home.png`
+- `docs/screenshots/run-result.png`
+
+## Architecture
+
+See [`docs/architecture.md`](/home/changli/Desktop/9021tasks/docs/architecture.md) for component and data flow details.
+
+## Suggested Repository Structure
+
+See [`docs/repository-structure.md`](/home/changli/Desktop/9021tasks/docs/repository-structure.md) for a clean open-source layout proposal.
+
+## Development and Testing
+
+```bash
+pytest -q
+```
+
+## License
+
+This repository uses the MIT License (see [`LICENSE`](/home/changli/Desktop/9021tasks/LICENSE)).
