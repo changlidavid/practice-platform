@@ -12,6 +12,8 @@ It is designed for local-first practice and reproducible deployment (native Pyth
 
 ## Quick Start
 
+### always remember to modify the contents of the .env file according to the prompts to match your own settings before proceeding to the next step!
+
 ### 1. Clone and install
 
 ```bash
