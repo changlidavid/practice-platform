@@ -243,35 +243,72 @@ def upsert_problem(
     if not safe_template_code.strip():
         safe_template_code = _fallback_template_from_doctest(doctest)
 
+    problem_columns = {
+        str(row["name"])
+        for row in conn.execute("PRAGMA table_info(problems)").fetchall()
+    }
+    has_legacy_prompt = "prompt_path" in problem_columns
+    has_legacy_solution = "solution_path" in problem_columns
+
+    insert_cols = [
+        "bundle_id",
+        "slug",
+        "title",
+        "description",
+        "template_code",
+        "doctest",
+        "created_at",
+        "source_relpath",
+        "assets_manifest_json",
+        "content_hash",
+    ]
+    values: list[Any] = [
+        bundle_id,
+        slug,
+        title,
+        description,
+        safe_template_code,
+        doctest,
+        utc_now_iso(),
+        source_relpath,
+        json.dumps(assets_manifest),
+        content_hash,
+    ]
+    update_assignments = [
+        "bundle_id = excluded.bundle_id",
+        "title = excluded.title",
+        "description = excluded.description",
+        "template_code = excluded.template_code",
+        "doctest = excluded.doctest",
+        "source_relpath = excluded.source_relpath",
+        "assets_manifest_json = excluded.assets_manifest_json",
+        "content_hash = excluded.content_hash",
+    ]
+
+    if has_legacy_prompt:
+        compat_prompt_path = f"compat://prompt/{source_relpath or slug}"
+        insert_cols.append("prompt_path")
+        values.append(compat_prompt_path)
+        update_assignments.append("prompt_path = excluded.prompt_path")
+    if has_legacy_solution:
+        compat_solution_path = f"compat://solution/{slug}.py"
+        insert_cols.append("solution_path")
+        values.append(compat_solution_path)
+        update_assignments.append("solution_path = excluded.solution_path")
+
+    columns_sql = ", ".join(insert_cols)
+    placeholders_sql = ", ".join("?" for _ in insert_cols)
+    updates_sql = ",\n            ".join(update_assignments)
     conn.execute(
-        """
+        f"""
         INSERT INTO problems(
-            bundle_id, slug, title, description, template_code, doctest, created_at,
-            source_relpath, assets_manifest_json, content_hash
+            {columns_sql}
         )
-        VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES({placeholders_sql})
         ON CONFLICT(slug) DO UPDATE SET
-            bundle_id = excluded.bundle_id,
-            title = excluded.title,
-            description = excluded.description,
-            template_code = excluded.template_code,
-            doctest = excluded.doctest,
-            source_relpath = excluded.source_relpath,
-            assets_manifest_json = excluded.assets_manifest_json,
-            content_hash = excluded.content_hash
+            {updates_sql}
         """,
-        (
-            bundle_id,
-            slug,
-            title,
-            description,
-            safe_template_code,
-            doctest,
-            utc_now_iso(),
-            source_relpath,
-            json.dumps(assets_manifest),
-            content_hash,
-        ),
+        tuple(values),
     )
     conn.commit()
 
