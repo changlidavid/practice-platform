@@ -19,5 +19,6 @@ services:
       SMTP_FROM: ${SMTP_FROM}
       SMTP_USE_TLS: ${SMTP_USE_TLS:-true}
     volumes:
+      # Development mode: use host data directly for fast iteration.
       - ./.practice:/data
     restart: unless-stopped
