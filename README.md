@@ -16,7 +16,8 @@ python -m app.cli run sample_1
 git clone https://github.com/changlidavid/practice-platform.git
 cd practice-platform
 
-cp .env.example .env (Remember to modify the contents of the .env file according to the prompts to match your own settings before proceeding to the next step!)
+#### (Remember to modify the contents of the .env file according to the prompts to match your own settings before proceeding to the next step!)
+cp .env.example .env 
 
 docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d --build
 
