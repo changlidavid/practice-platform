@@ -17,7 +17,7 @@ from fastapi.responses import HTMLResponse, JSONResponse, RedirectResponse, Resp
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 
-from . import db, runner
+from . import db, importer, runner
 from .config import ensure_workspace, get_paths, load_env_file
 from .statements import ensure_statement
 
@@ -306,8 +306,9 @@ def _require_session_api(request: Request) -> str:
     return email
 
 
-def _bootstrap(conn) -> None:
+def _bootstrap(conn, paths) -> None:
     db.init_db(conn)
+    importer.ensure_imported(conn, paths)
 
 
 def _normalize_row(row: Any) -> dict[str, Any]:
@@ -360,7 +361,7 @@ def create_app() -> FastAPI:
 
     conn = db.connect(paths.db_path)
     try:
-        _bootstrap(conn)
+        _bootstrap(conn, paths)
     finally:
         conn.close()
 
