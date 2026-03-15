@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  22T1 2
+# Sum Discarding Carry Overs
 
 Write a function `sum_discarding_carry_overs`.
 

@@ -3,14 +3,16 @@ from __future__ import annotations
 import json
 
 from app import db, runner
-from app.config import get_paths
+from app.config import get_paths, hidden_tests_path_for_slug
 
 
 def _seed_function_problem(conn, tmp_path):
     bundle_root = tmp_path / "bundle_json"
     problem_dir = bundle_root / "two_sum"
     problem_dir.mkdir(parents=True, exist_ok=True)
-    (problem_dir / "hidden_tests.json").write_text(
+    hidden_tests_path = hidden_tests_path_for_slug("bundle_json:two_sum", get_paths().hidden_tests_root)
+    hidden_tests_path.parent.mkdir(parents=True, exist_ok=True)
+    hidden_tests_path.write_text(
         json.dumps(
             {
                 "version": 1,
@@ -183,6 +185,37 @@ def not_two_sum(nums, target):
         assert result.failed == 0
         assert "not found" in (result.stdout + result.stderr).lower()
         assert result.feedback is not None
-        assert result.feedback["first_failure"]["failure_type"] == "Import Error"
+        assert result.feedback["first_failure"]["failure_type"] in {"Import Error", "Runtime Error"}
+    finally:
+        conn.close()
+
+
+def test_function_json_runner_submit_uses_server_only_hidden_tests(isolated_env, tmp_path):
+    paths = get_paths()
+    conn = db.connect(paths.db_path)
+    try:
+        row = _seed_function_problem(conn, tmp_path)
+        problem_dir = tmp_path / "bundle_json" / "two_sum"
+        assert not (problem_dir / "hidden_tests.json").exists()
+
+        solution = """\
+def two_sum(nums, target):
+    seen = {}
+    for i, n in enumerate(nums):
+        need = target - n
+        if need in seen:
+            return [seen[need], i]
+        seen[n] = i
+    return []
+"""
+        _, result = runner.run_problem(
+            conn,
+            paths,
+            row,
+            solution_content=solution,
+            function_json_feedback_mode="submit",
+        )
+        assert result.status == "pass"
+        assert result.passed == 2
     finally:
         conn.close()

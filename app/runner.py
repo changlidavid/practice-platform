@@ -20,7 +20,7 @@ from pathlib import Path
 from typing import Any, Callable, TextIO
 
 from . import db
-from .config import Paths
+from .config import Paths, hidden_tests_path_for_slug
 from .models import RunResult
 
 
@@ -858,6 +858,7 @@ def _run_doctest_evaluation(
 
 def _run_function_json_evaluation(
     conn: sqlite3.Connection,
+    paths: Paths,
     problem_row: sqlite3.Row,
     *,
     solution_content: str,
@@ -920,7 +921,18 @@ def _run_function_json_evaluation(
         cases_path = problem_dir / "public_examples.json"
         missing_label = "Public examples"
     else:
-        cases_path = problem_dir / "hidden_tests.json"
+        slug = str(problem_row["slug"] or "").strip()
+        if not slug:
+            return RunResult(
+                status="error",
+                passed=0,
+                failed=0,
+                exit_code=2,
+                stdout="",
+                stderr="[runner] Missing slug for function_json problem.\n",
+                duration_ms=0,
+            )
+        cases_path = hidden_tests_path_for_slug(slug, paths.hidden_tests_root)
         missing_label = "Hidden tests"
     if not cases_path.exists():
         return RunResult(
@@ -1037,6 +1049,7 @@ def run_problem(
         if mode == "function_json":
             result = _run_function_json_evaluation(
                 conn,
+                paths,
                 problem_row,
                 solution_content=solution_content,
                 run_dir=run_dir,

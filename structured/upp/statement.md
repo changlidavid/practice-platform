@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Dfs  24T3
+# Increasing Subsequences From First Element
 
 Finds all increasing subsequences that start with the first element of the list.
 

@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  21T3 22T3 23T2 2
+# Is Heterosquare
 
 A heterosquare of order n is an arrangement of the integers 1 to n**2 in a square,
 such that the rows, columns, and diagonals all sum to DIFFERENT values.

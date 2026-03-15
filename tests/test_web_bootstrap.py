@@ -28,6 +28,7 @@ def test_load_env_file_overrides_existing_bundle_paths(tmp_path, monkeypatch):
     env_path = tmp_path / ".env"
     env_path.write_text("PRACTICE_BUNDLE_PATHS=problems,structured\n", encoding="utf-8")
     monkeypatch.setenv("PRACTICE_BUNDLE_PATHS", "problems")
+    monkeypatch.setenv("PRACTICE_HOME", str(tmp_path / ".practice"))
 
     load_env_file(tmp_path)
 
@@ -37,6 +38,7 @@ def test_load_env_file_overrides_existing_bundle_paths(tmp_path, monkeypatch):
 
     _ = create_app()
 
+    paths = get_paths()
     conn = db.connect(paths.db_path)
     try:
         count_after = conn.execute("SELECT COUNT(*) AS c FROM problems").fetchone()

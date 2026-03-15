@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  24T3
+# Remove Even Digits
 
 Removes all even digits from a number, preserving the sign of the original number.
 If the result has no digits (all were even), returns 0.

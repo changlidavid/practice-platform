@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  22T2 25T1
+# Collapse
 
 Write a function `collapse`.
 

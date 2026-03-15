@@ -1,4 +1,4 @@
-# 9021  Sample 3
+# Good Subsequences
 
 Write a function `good_subsequences`.
 

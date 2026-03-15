@@ -1,4 +1,4 @@
-# Final  2  Sample 1
+# Remove Consecutive Duplicates
 
 Write a function `remove_consecutive_duplicates`.
 

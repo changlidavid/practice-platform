@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  6
+# Single Factors
 
 Returns the product of the prime divisors of "number"
 (using each prime divisor only once).

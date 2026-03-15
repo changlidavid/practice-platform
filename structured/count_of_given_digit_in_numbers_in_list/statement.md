@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  21T3 22T3 23T2 1
+# Count Of Given Digit In Numbers In List
 
 You can assume that L is a list of positive integers and d is a digit.
 

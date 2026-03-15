@@ -9,6 +9,7 @@ __pycache__/
 # Runtime data
 .practice/
 runs/
+.server-hidden-tests/
 
 # Build / packaging
 *.egg-info/
@@ -20,3 +21,6 @@ practice_cli.egg-info/
 
 # Editor
 .vscode/
+
+# Server-only hidden test payloads
+**/hidden_tests.json

@@ -1,10 +1,12 @@
 services:
   web:
     environment:
+      PRACTICE_HIDDEN_TESTS_ROOT: ${PRACTICE_HIDDEN_TESTS_ROOT:-/opt/practice-hidden-tests}
       OTP_DEV_MODE: ${OTP_DEV_MODE:-false}
       COOKIE_SECURE: ${COOKIE_SECURE:-true}
     volumes:
       - practice_data:/data
+      - ./.server-hidden-tests:/opt/practice-hidden-tests:ro
     healthcheck:
       test:
         [

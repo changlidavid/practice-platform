@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  20T3 1
+# Filtered Sequence
 
 Returns a list LL that keeps from L all elements e
 that are part of a sub-sequence of length at least n.

@@ -31,7 +31,6 @@ _REQUIRED_FUNCTION_PROBLEM_FILES = (
     "statement.md",
     "starter.py",
     "public_examples.json",
-    "hidden_tests.json",
 )
 
 
@@ -239,16 +238,6 @@ def import_bundle(conn: sqlite3.Connection, paths: Paths, source_root: Path) -> 
         if not isinstance(public_examples, (list, dict)):
             raise RuntimeError(
                 f"Invalid public examples in {problem_dir / 'public_examples.json'}: expected list or object"
-            )
-
-        hidden_tests_raw = (problem_dir / "hidden_tests.json").read_text(encoding="utf-8")
-        try:
-            hidden_tests = json.loads(hidden_tests_raw)
-        except json.JSONDecodeError as exc:
-            raise RuntimeError(f"Invalid JSON in {problem_dir / 'hidden_tests.json'}: {exc}") from exc
-        if not isinstance(hidden_tests, dict) or not isinstance(hidden_tests.get("cases"), list):
-            raise RuntimeError(
-                f"Invalid hidden tests in {problem_dir / 'hidden_tests.json'}: expected object with list 'cases'"
             )
 
         entry_function = str(meta.get("entry_function", "")).strip()

@@ -1,10 +1,10 @@
-# Final  2  Sample 3
+# Remove Consecutive Duplicates
 
-Write a function `good_subsequences`.
+Write a function `remove_consecutive_duplicates`.
 
 ## Function Signature
 
-`good_subsequences(...)`
+`remove_consecutive_duplicates(...)`
 
 ## Notes
 

@@ -1,6 +1,6 @@
 {
-  "slug": "remove_consecutive_duplicates_2_sample_1",
-  "title": "Final  2  Sample 1",
+  "slug": "remove_consecutive_duplicates_1",
+  "title": "Remove Consecutive Duplicates",
   "entry_function": "remove_consecutive_duplicates",
   "evaluation_mode": "function_json"
 }

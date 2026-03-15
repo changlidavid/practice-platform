@@ -15,6 +15,7 @@ class Paths:
     assets_dir: Path
     runs_dir: Path
     source_bundle: Path
+    hidden_tests_root: Path
 
 
 def load_env_file(repo_root: Path) -> None:
@@ -41,6 +42,9 @@ def get_paths() -> Paths:
     repo_root = Path(__file__).resolve().parents[1]
     workspace_root = Path(os.environ.get("PRACTICE_HOME", repo_root / ".practice")).resolve()
     source_bundle = Path(os.environ.get("PRACTICE_BUNDLE_PATH", repo_root / "9021")).resolve()
+    hidden_tests_root = Path(
+        os.environ.get("PRACTICE_HIDDEN_TESTS_ROOT", "/opt/practice-hidden-tests")
+    ).resolve()
     return Paths(
         repo_root=repo_root,
         workspace_root=workspace_root,
@@ -50,7 +54,19 @@ def get_paths() -> Paths:
         assets_dir=workspace_root / "assets",
         runs_dir=workspace_root / "runs",
         source_bundle=source_bundle,
+        hidden_tests_root=hidden_tests_root,
     )
+
+
+def hidden_tests_filename_for_slug(slug: str) -> str:
+    safe_slug = "".join(ch if ch.isalnum() or ch in {"-", "_", "."} else "__" for ch in slug.strip())
+    if not safe_slug:
+        raise ValueError("Problem slug is required for hidden test lookup")
+    return f"{safe_slug}.json"
+
+
+def hidden_tests_path_for_slug(slug: str, hidden_tests_root: Path) -> Path:
+    return hidden_tests_root / hidden_tests_filename_for_slug(slug)
 
 
 def ensure_workspace(paths: Paths) -> None:

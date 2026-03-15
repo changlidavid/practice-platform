@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  21T3 22T3 23T2
+# Longest Leftmost Sequence Of Consecutive Letters
 
 You can assume that "word" is a string of nothing but lowercase letters.
 

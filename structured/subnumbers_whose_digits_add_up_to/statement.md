@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  20T3 2
+# Subnumbers Whose Digits Add Up To
 
 You can assume that "number" consists of digits not equal to 0
 and that "sum_of_digits" is a strictly positive integer.

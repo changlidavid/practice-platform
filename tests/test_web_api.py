@@ -279,10 +279,6 @@ def test_problem_api_returns_public_examples_not_hidden_tests(isolated_env, tmp_
         json.dumps([{"id": "pub-1", "input": "nums=[2,7,11,15], target=9", "output": "[0,1]"}]),
         encoding="utf-8",
     )
-    (problem_dir / "hidden_tests.json").write_text(
-        json.dumps({"version": 1, "cases": [{"id": "hid-1", "args": [[2, 7, 11, 15], 9], "expected": [0, 1]}]}),
-        encoding="utf-8",
-    )
 
     conn = db.connect(paths.db_path)
     try:
@@ -304,3 +300,47 @@ def test_problem_api_returns_public_examples_not_hidden_tests(isolated_env, tmp_
     dumped = json.dumps(payload)
     assert "hidden_tests" not in dumped
     assert "hid-1" not in dumped
+
+
+def test_problem_api_prefers_title_over_slug_for_display_name(isolated_env, tmp_path):
+    paths = get_paths()
+    bundle_root = tmp_path / "display_bundle"
+    problem_dir = bundle_root / "ugly_problem_name_sample_3"
+    problem_dir.mkdir(parents=True, exist_ok=True)
+    (problem_dir / "meta.json").write_text(
+        json.dumps(
+            {
+                "slug": "ugly_problem_name_sample_3",
+                "title": "Good Subsequences",
+                "entry_function": "good_subsequences",
+            }
+        ),
+        encoding="utf-8",
+    )
+    (problem_dir / "statement.md").write_text("# Good Subsequences\nReturn subsequences.\n", encoding="utf-8")
+    (problem_dir / "starter.py").write_text(
+        "def good_subsequences(values):\n    return []\n",
+        encoding="utf-8",
+    )
+    (problem_dir / "public_examples.json").write_text(
+        json.dumps([{"id": "pub-1", "input": "values=[1,2]", "output": "[[1,2]]"}]),
+        encoding="utf-8",
+    )
+
+    conn = db.connect(paths.db_path)
+    try:
+        db.init_db(conn)
+        importer.import_bundle(conn, paths, bundle_root)
+    finally:
+        conn.close()
+
+    app = create_app()
+    client = TestClient(app)
+    _login(client)
+
+    rows = client.get("/api/problems").json()["problems"]
+    target = next(row for row in rows if row["slug"] == "display_bundle:ugly_problem_name_sample_3")
+    assert target["display_name"] == "Good Subsequences"
+
+    payload = client.get(f"/api/problems/{target['id']}").json()
+    assert payload["problem"]["display_name"] == "Good Subsequences"

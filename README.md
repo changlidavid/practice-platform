@@ -112,6 +112,7 @@ Configured in `.env` (see `.env.example`).
 | `PRACTICE_HOME` | No | `/data` in Docker, `.practice` locally | Workspace root (DB, runs, solutions, assets). |
 | `PRACTICE_BUNDLE_PATH` | No | `9021` | Legacy single startup bundle path. |
 | `PRACTICE_BUNDLE_PATHS` | No | unset | Comma-separated bundle paths, e.g. `9021,problems` (takes precedence over single path). |
+| `PRACTICE_HIDDEN_TESTS_ROOT` | No | `/opt/practice-hidden-tests` | Server-only directory used to load hidden test JSON for `Submit`. |
 | `OTP_DEV_MODE` | No | `false` | If true, allows dev OTP fallback when SMTP is missing. |
 | `COOKIE_SECURE` | No | `false` dev / `true` prod-like | Secure session cookies (enable under HTTPS). |
 | `SMTP_HOST` | Yes for real email OTP | unset | SMTP host (example: Gmail SMTP). |
@@ -133,11 +134,10 @@ problems/<problem_name>/
   statement.md
   starter.py
   public_examples.json
-  hidden_tests.json
 ```
 
-- `statement.md` and `public_examples.json` are visible in UI.
-- `hidden_tests.json` is loaded server-side by the runner and never returned by API.
+- `statement.md` and `public_examples.json` are visible in UI and safe to commit.
+- Hidden tests are loaded server-side from `PRACTICE_HIDDEN_TESTS_ROOT` and never returned by API.
 - `meta.json` requires at least: `entry_function` (and usually `slug`, `title`).
 
 ## Migration Template
@@ -151,7 +151,7 @@ Recommended mapping from old doctest problem to new files:
 - `statement.md`: reuse any non-doctest prose from the original function docstring; if the source has no prose, add a short plain-language prompt plus the function signature.
 - `starter.py`: keep the original function signature, but replace the implementation with a minimal stub.
 - `public_examples.json`: keep a small display-only subset of examples, usually the first 2-3 representative doctests.
-- `hidden_tests.json`: include the full official evaluation set. During early migration, it is reasonable to copy all original doctest examples here, including the public ones, and then add extra hidden edge cases manually.
+- server-side hidden test file: include the full official evaluation set. During early migration, it is reasonable to copy all original doctest examples there, including the public ones, and then add extra hidden edge cases manually.
 
 Automatic conversion is safest for return-value problems whose doctests look like direct literal calls such as `f([1, 2])` with literal outputs such as `[2, 1]`.
 Problems that grade printed output should stay on legacy doctest for now or be migrated manually after redesigning them as return-value functions.
@@ -167,6 +167,106 @@ The script:
 - writes `meta.json`, `statement.md`, `starter.py`, `public_examples.json`, and `hidden_tests.json`
 - uses all original doctest examples as the initial hidden test set
 - leaves final review to you, especially for better statement wording and extra hidden edge cases
+
+After running the migration script, move the generated `hidden_tests.json` out of the repo before committing.
+
+## Server-Only Hidden Tests
+
+`Run` still uses the committed `public_examples.json`.
+
+`Submit` now resolves hidden tests from:
+
+```text
+${PRACTICE_HIDDEN_TESTS_ROOT:-/opt/practice-hidden-tests}/<mapped-slug>.json
+```
+
+The filename mapping is deterministic:
+
+- slug `two_sum` -> `/opt/practice-hidden-tests/two_sum.json`
+- slug `problems:two_sum` -> `/opt/practice-hidden-tests/problems__two_sum.json`
+- slug `function_api_bundle:two_sum` -> `/opt/practice-hidden-tests/function_api_bundle__two_sum.json`
+
+Non-alphanumeric slug characters are replaced with `__`.
+
+### Migration Steps For Existing Hidden Tests
+
+1. Create the server-only directory:
+
+```bash
+sudo mkdir -p /opt/practice-hidden-tests
+sudo chown "$USER":"$USER" /opt/practice-hidden-tests
+```
+
+2. Move every tracked hidden test file out of the repo and into the server directory with the mapped name:
+
+```bash
+python3 - <<'PY'
+import json
+import os
+from pathlib import Path
+import shutil
+
+repo = Path.cwd()
+target_root = Path("/opt/practice-hidden-tests")
+default_bundle = Path(os.environ.get("PRACTICE_BUNDLE_PATH", repo / "9021")).resolve()
+
+def mapped_name(slug: str) -> str:
+    safe = "".join(ch if ch.isalnum() or ch in "-_." else "__" for ch in slug.strip())
+    return f"{safe}.json"
+
+for root_name in ("problems", "structured"):
+    root = repo / root_name
+    if not root.exists():
+        continue
+    for path in sorted(root.rglob("hidden_tests.json")):
+        meta = json.loads((path.parent / "meta.json").read_text(encoding="utf-8"))
+        configured = str(meta.get("slug", "")).strip()
+        if configured:
+            if root.resolve() == default_bundle:
+                slug = configured
+            elif ":" in configured:
+                slug = configured
+            else:
+                slug = f"{root.name}:{configured}"
+        else:
+            slug = path.parent.name if root.resolve() == default_bundle else f"{root.name}:{path.parent.name}"
+        target = target_root / mapped_name(slug)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(path, target)
+        print(f"{path.relative_to(repo)} -> {target}")
+PY
+```
+
+3. Stop tracking the in-repo copies and remove them from the latest commit state:
+
+```bash
+git rm --cached problems/*/hidden_tests.json structured/*/hidden_tests.json
+find problems structured -name hidden_tests.json -delete
+```
+
+4. Commit the removal plus the code changes in this patch, then deploy normally with the hidden test directory provisioned separately on the server.
+
+### Deploy Hidden Tests Separately After `git clone`
+
+After cloning the public repo onto the server:
+
+```bash
+sudo mkdir -p /opt/practice-hidden-tests
+sudo chown "$USER":"$USER" /opt/practice-hidden-tests
+```
+
+Then copy the hidden JSON payloads into that directory using the mapped filenames above, for example:
+
+```bash
+scp /secure-backup/problems__two_sum.json your-server:/opt/practice-hidden-tests/
+scp /secure-backup/function_api_bundle__two_sum.json your-server:/opt/practice-hidden-tests/
+```
+
+Or from a private archive already on the server:
+
+```bash
+cp /srv/private-hidden-tests/*.json /opt/practice-hidden-tests/
+```
 
 Security note:
 - Never commit real credentials in `.env`.

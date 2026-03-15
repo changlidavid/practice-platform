@@ -1,10 +1,10 @@
-# Final  1754923206907Syv  Item  Item  1
+# Good Subsequences
 
-Write a function `remove_consecutive_duplicates`.
+Write a function `good_subsequences`.
 
 ## Function Signature
 
-`remove_consecutive_duplicates(...)`
+`good_subsequences(...)`
 
 ## Notes
 

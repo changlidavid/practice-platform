@@ -117,10 +117,6 @@ def test_importer_supports_function_json_problem_format(isolated_env, tmp_path):
         json.dumps([{"id": "ex-1", "input": "x", "output": "y"}]),
         encoding="utf-8",
     )
-    (problem_dir / "hidden_tests.json").write_text(
-        json.dumps({"version": 1, "cases": [{"id": "c1", "args": [[1, 2], 3], "expected": [0, 1]}]}),
-        encoding="utf-8",
-    )
 
     conn = db.connect(paths.db_path)
     try:

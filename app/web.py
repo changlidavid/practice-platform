@@ -346,12 +346,14 @@ def _bootstrap(conn, paths) -> None:
 
 def _normalize_row(row: Any) -> dict[str, Any]:
     slug = str(row["slug"])
-    display_name = slug.split(":", 1)[1] if ":" in slug else slug
+    title = str(row["title"]).strip()
+    slug_display = slug.split(":", 1)[1] if ":" in slug else slug
+    display_name = title or slug_display
     return {
         "id": int(row["id"]),
         "slug": slug,
         "display_name": display_name,
-        "title": str(row["title"]),
+        "title": title,
         "bundle_name": str(row["bundle_name"]),
         "source_relpath": str(row["source_relpath"]),
         "attempts": int(row["attempts"]),
@@ -711,10 +713,13 @@ def create_app() -> FastAPI:
                 "problem": {
                     "id": int(row["id"]),
                     "slug": str(row["slug"]),
-                    "display_name": str(row["slug"]).split(":", 1)[1]
-                    if ":" in str(row["slug"])
-                    else str(row["slug"]),
-                    "title": str(row["title"]),
+                    "display_name": str(row["title"]).strip()
+                    or (
+                        str(row["slug"]).split(":", 1)[1]
+                        if ":" in str(row["slug"])
+                        else str(row["slug"])
+                    ),
+                    "title": str(row["title"]).strip(),
                     "description": str(row["description"]),
                     "source_relpath": str(row["source_relpath"]),
                 },

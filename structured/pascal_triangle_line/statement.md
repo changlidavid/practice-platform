@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  21T3 22T3 23T2 3
+# Pascal Triangle Line
 
 Recall: it is the list of binomial coefficients that give the
 number of ways of choosing k objects out of n - 1 for 0 <= k < n.

@@ -1,4 +1,4 @@
-# Final  1754923206907Syv  Item  Item  4
+# Rearrange
 
 Returns an integer consisting of all nonzero digits in "number",
 from smallest to largest.

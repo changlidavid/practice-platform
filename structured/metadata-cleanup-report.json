@@ -1,0 +1,319 @@
+{
+  "structured_root": "/home/changli/Desktop/9021tasks/structured",
+  "applied": true,
+  "updated_titles": [
+    {
+      "dir": "collapse",
+      "slug": "collapse",
+      "old_title": "Final  1754923206907Syv  Item  Item  22T2 25T1",
+      "new_title": "Collapse",
+      "old_heading": "Final  1754923206907Syv  Item  Item  22T2 25T1",
+      "new_heading": "Collapse"
+    },
+    {
+      "dir": "count_of_given_digit_in_numbers_in_list",
+      "slug": "count_of_given_digit_in_numbers_in_list",
+      "old_title": "Final  1754923206907Syv  Item  Item  21T3 22T3 23T2 1",
+      "new_title": "Count Of Given Digit In Numbers In List",
+      "old_heading": "Final  1754923206907Syv  Item  Item  21T3 22T3 23T2 1",
+      "new_heading": "Count Of Given Digit In Numbers In List"
+    },
+    {
+      "dir": "f_24t3",
+      "slug": "f_24t3",
+      "old_title": "Final  1754923206907Syv  Item  Item  24T3",
+      "new_title": "Remove Even Digits",
+      "old_heading": "Final  1754923206907Syv  Item  Item  24T3",
+      "new_heading": "Remove Even Digits"
+    },
+    {
+      "dir": "f_dfs_a",
+      "slug": "f_dfs_a",
+      "old_title": "Final  1754923206907Syv  Item  Dfs  A",
+      "new_title": "Increasing Subsequences",
+      "old_heading": "Final  1754923206907Syv  Item  Dfs  A",
+      "new_heading": "Increasing Subsequences"
+    },
+    {
+      "dir": "filtered_sequence",
+      "slug": "filtered_sequence",
+      "old_title": "Final  1754923206907Syv  Item  Item  20T3 1",
+      "new_title": "Filtered Sequence",
+      "old_heading": "Final  1754923206907Syv  Item  Item  20T3 1",
+      "new_heading": "Filtered Sequence"
+    },
+    {
+      "dir": "good_subsequences",
+      "slug": "good_subsequences",
+      "old_title": "9021  Sample 3",
+      "new_title": "Good Subsequences",
+      "old_heading": "9021  Sample 3",
+      "new_heading": "Good Subsequences"
+    },
+    {
+      "dir": "good_subsequences_2_sample_3",
+      "slug": "good_subsequences_2_sample_3",
+      "old_title": "Final  2  Sample 3",
+      "new_title": "Good Subsequences",
+      "old_heading": "Final  2  Sample 3",
+      "new_heading": "Good Subsequences"
+    },
+    {
+      "dir": "good_subsequences_sample_3",
+      "slug": "good_subsequences_sample_3",
+      "old_title": "Final  1754923206907Syv  Item  Sample2  Sample 3",
+      "new_title": "Good Subsequences",
+      "old_heading": "Final  1754923206907Syv  Item  Sample2  Sample 3",
+      "new_heading": "Good Subsequences"
+    },
+    {
+      "dir": "is_heterosquare",
+      "slug": "is_heterosquare",
+      "old_title": "Final  1754923206907Syv  Item  Item  21T3 22T3 23T2 2",
+      "new_title": "Is Heterosquare",
+      "old_heading": "Final  1754923206907Syv  Item  Item  21T3 22T3 23T2 2",
+      "new_heading": "Is Heterosquare"
+    },
+    {
+      "dir": "longest_leftmost_sequence_of_consecutive_letters",
+      "slug": "longest_leftmost_sequence_of_consecutive_letters",
+      "old_title": "Final  1754923206907Syv  Item  Item  21T3 22T3 23T2",
+      "new_title": "Longest Leftmost Sequence Of Consecutive Letters",
+      "old_heading": "Final  1754923206907Syv  Item  Item  21T3 22T3 23T2",
+      "new_heading": "Longest Leftmost Sequence Of Consecutive Letters"
+    },
+    {
+      "dir": "pascal_triangle_line",
+      "slug": "pascal_triangle_line",
+      "old_title": "Final  1754923206907Syv  Item  Item  21T3 22T3 23T2 3",
+      "new_title": "Pascal Triangle Line",
+      "old_heading": "Final  1754923206907Syv  Item  Item  21T3 22T3 23T2 3",
+      "new_heading": "Pascal Triangle Line"
+    },
+    {
+      "dir": "rearrange",
+      "slug": "rearrange",
+      "old_title": "Final  1754923206907Syv  Item  Item  4",
+      "new_title": "Rearrange",
+      "old_heading": "Final  1754923206907Syv  Item  Item  4",
+      "new_heading": "Rearrange"
+    },
+    {
+      "dir": "remove_consecutive_duplicates",
+      "slug": "remove_consecutive_duplicates",
+      "old_title": "9021  Sample 1",
+      "new_title": "Remove Consecutive Duplicates",
+      "old_heading": "9021  Sample 1",
+      "new_heading": "Remove Consecutive Duplicates"
+    },
+    {
+      "dir": "remove_consecutive_duplicates_1",
+      "slug": "remove_consecutive_duplicates_1",
+      "old_title": "Final  1754923206907Syv  Item  Item  1",
+      "new_title": "Remove Consecutive Duplicates",
+      "old_heading": "Final  1754923206907Syv  Item  Item  1",
+      "new_heading": "Remove Consecutive Duplicates"
+    },
+    {
+      "dir": "remove_consecutive_duplicates_2_sample_1",
+      "slug": "remove_consecutive_duplicates_2_sample_1",
+      "old_title": "Final  2  Sample 1",
+      "new_title": "Remove Consecutive Duplicates",
+      "old_heading": "Final  2  Sample 1",
+      "new_heading": "Remove Consecutive Duplicates"
+    },
+    {
+      "dir": "remove_consecutive_duplicates_sample_1",
+      "slug": "remove_consecutive_duplicates_sample_1",
+      "old_title": "Final  1754923206907Syv  Item  Sample2  Sample 1",
+      "new_title": "Remove Consecutive Duplicates",
+      "old_heading": "Final  1754923206907Syv  Item  Sample2  Sample 1",
+      "new_heading": "Remove Consecutive Duplicates"
+    },
+    {
+      "dir": "reorder",
+      "slug": "reorder",
+      "old_title": "Final  1754923206907Syv  Item  Item  22T1 1",
+      "new_title": "Reorder",
+      "old_heading": "Final  1754923206907Syv  Item  Item  22T1 1",
+      "new_heading": "Reorder"
+    },
+    {
+      "dir": "single_factors",
+      "slug": "single_factors",
+      "old_title": "Final  1754923206907Syv  Item  Item  6",
+      "new_title": "Single Factors",
+      "old_heading": "Final  1754923206907Syv  Item  Item  6",
+      "new_heading": "Single Factors"
+    },
+    {
+      "dir": "subnumbers_whose_digits_add_up_to",
+      "slug": "subnumbers_whose_digits_add_up_to",
+      "old_title": "Final  1754923206907Syv  Item  Item  20T3 2",
+      "new_title": "Subnumbers Whose Digits Add Up To",
+      "old_heading": "Final  1754923206907Syv  Item  Item  20T3 2",
+      "new_heading": "Subnumbers Whose Digits Add Up To"
+    },
+    {
+      "dir": "sum_discarding_carry_overs",
+      "slug": "sum_discarding_carry_overs",
+      "old_title": "Final  1754923206907Syv  Item  Item  22T1 2",
+      "new_title": "Sum Discarding Carry Overs",
+      "old_heading": "Final  1754923206907Syv  Item  Item  22T1 2",
+      "new_heading": "Sum Discarding Carry Overs"
+    },
+    {
+      "dir": "transform",
+      "slug": "transform",
+      "old_title": "Final  1754923206907Syv  Item  Item  23T1",
+      "new_title": "Transform",
+      "old_heading": "Final  1754923206907Syv  Item  Item  23T1",
+      "new_heading": "Transform"
+    },
+    {
+      "dir": "upp",
+      "slug": "upp",
+      "old_title": "Final  1754923206907Syv  Item  Dfs  24T3",
+      "new_title": "Increasing Subsequences From First Element",
+      "old_heading": "Final  1754923206907Syv  Item  Dfs  24T3",
+      "new_heading": "Increasing Subsequences From First Element"
+    }
+  ],
+  "likely_duplicate_groups": [
+    {
+      "entry_function": "good_subsequences",
+      "representative": "good_subsequences",
+      "members": [
+        {
+          "dir": "good_subsequences",
+          "slug": "good_subsequences",
+          "title": "Good Subsequences"
+        },
+        {
+          "dir": "good_subsequences_2_sample_3",
+          "slug": "good_subsequences_2_sample_3",
+          "title": "Good Subsequences"
+        },
+        {
+          "dir": "good_subsequences_sample_3",
+          "slug": "good_subsequences_sample_3",
+          "title": "Good Subsequences"
+        }
+      ],
+      "recommendation": "These entries share identical starter/public/hidden assets. Keep 'good_subsequences' as the representative copy, or rename the others only if you intentionally need multiple labeled variants."
+    },
+    {
+      "entry_function": "remove_consecutive_duplicates",
+      "representative": "remove_consecutive_duplicates",
+      "members": [
+        {
+          "dir": "remove_consecutive_duplicates",
+          "slug": "remove_consecutive_duplicates",
+          "title": "Remove Consecutive Duplicates"
+        },
+        {
+          "dir": "remove_consecutive_duplicates_1",
+          "slug": "remove_consecutive_duplicates_1",
+          "title": "Remove Consecutive Duplicates"
+        },
+        {
+          "dir": "remove_consecutive_duplicates_2_sample_1",
+          "slug": "remove_consecutive_duplicates_2_sample_1",
+          "title": "Remove Consecutive Duplicates"
+        },
+        {
+          "dir": "remove_consecutive_duplicates_sample_1",
+          "slug": "remove_consecutive_duplicates_sample_1",
+          "title": "Remove Consecutive Duplicates"
+        }
+      ],
+      "recommendation": "These entries share identical starter/public/hidden assets. Keep 'remove_consecutive_duplicates' as the representative copy, or rename the others only if you intentionally need multiple labeled variants."
+    }
+  ],
+  "collision_groups": [
+    {
+      "entry_function": "f",
+      "clean_title": "Remove Even Digits",
+      "members": [
+        {
+          "dir": "f_24t3",
+          "slug": "f_24t3",
+          "title": "Remove Even Digits",
+          "proposed_suffix": "24t3",
+          "proposed_slug": "f_24t3"
+        },
+        {
+          "dir": "f_dfs_a",
+          "slug": "f_dfs_a",
+          "title": "Increasing Subsequences",
+          "proposed_suffix": "dfs_a",
+          "proposed_slug": "f_dfs_a"
+        }
+      ],
+      "recommendation": "Do not rename automatically. If these are true duplicates, keep one representative copy. If you need multiple variants, use a readable suffix such as sample_3, final2_sample_3, or 22t1."
+    },
+    {
+      "entry_function": "good_subsequences",
+      "clean_title": "Good Subsequences",
+      "members": [
+        {
+          "dir": "good_subsequences",
+          "slug": "good_subsequences",
+          "title": "Good Subsequences",
+          "proposed_suffix": "",
+          "proposed_slug": "good_subsequences"
+        },
+        {
+          "dir": "good_subsequences_2_sample_3",
+          "slug": "good_subsequences_2_sample_3",
+          "title": "Good Subsequences",
+          "proposed_suffix": "final2_sample_3",
+          "proposed_slug": "good_subsequences_final2_sample_3"
+        },
+        {
+          "dir": "good_subsequences_sample_3",
+          "slug": "good_subsequences_sample_3",
+          "title": "Good Subsequences",
+          "proposed_suffix": "sample_3",
+          "proposed_slug": "good_subsequences_sample_3"
+        }
+      ],
+      "recommendation": "Do not rename automatically. If these are true duplicates, keep one representative copy. If you need multiple variants, use a readable suffix such as sample_3, final2_sample_3, or 22t1."
+    },
+    {
+      "entry_function": "remove_consecutive_duplicates",
+      "clean_title": "Remove Consecutive Duplicates",
+      "members": [
+        {
+          "dir": "remove_consecutive_duplicates",
+          "slug": "remove_consecutive_duplicates",
+          "title": "Remove Consecutive Duplicates",
+          "proposed_suffix": "",
+          "proposed_slug": "remove_consecutive_duplicates"
+        },
+        {
+          "dir": "remove_consecutive_duplicates_1",
+          "slug": "remove_consecutive_duplicates_1",
+          "title": "Remove Consecutive Duplicates",
+          "proposed_suffix": "final1",
+          "proposed_slug": "remove_consecutive_duplicates_final1"
+        },
+        {
+          "dir": "remove_consecutive_duplicates_2_sample_1",
+          "slug": "remove_consecutive_duplicates_2_sample_1",
+          "title": "Remove Consecutive Duplicates",
+          "proposed_suffix": "final2_sample_1",
+          "proposed_slug": "remove_consecutive_duplicates_final2_sample_1"
+        },
+        {
+          "dir": "remove_consecutive_duplicates_sample_1",
+          "slug": "remove_consecutive_duplicates_sample_1",
+          "title": "Remove Consecutive Duplicates",
+          "proposed_suffix": "sample_1",
+          "proposed_slug": "remove_consecutive_duplicates_sample_1"
+        }
+      ],
+      "recommendation": "Do not rename automatically. If these are true duplicates, keep one representative copy. If you need multiple variants, use a readable suffix such as sample_3, final2_sample_3, or 22t1."
+    }
+  ]
+}
