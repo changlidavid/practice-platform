@@ -1,0 +1,6 @@
+{
+  "slug": "remove_consecutive_duplicates",
+  "title": "Remove Consecutive Duplicates",
+  "entry_function": "remove_consecutive_duplicates",
+  "evaluation_mode": "function_json"
+}

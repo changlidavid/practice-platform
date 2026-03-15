@@ -9,6 +9,8 @@ WORKDIR /app
 
 RUN groupadd --system app && useradd --system --gid app --create-home --home-dir /home/app app
 
+COPY structured ./structured
+COPY problems ./problems
 COPY pyproject.toml ./
 COPY app ./app
 COPY statements ./statements

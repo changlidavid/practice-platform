@@ -1,0 +1,6 @@
+{
+  "slug": "is_heterosquare",
+  "title": "Is Heterosquare",
+  "entry_function": "is_heterosquare",
+  "evaluation_mode": "function_json"
+}

@@ -1,0 +1,893 @@
+{
+  "source_roots": [
+    "/home/changli/Desktop/9021tasks/9021",
+    "/home/changli/Desktop/9021tasks/final"
+  ],
+  "output_root": "/home/changli/Desktop/9021tasks/structured",
+  "dry_run": false,
+  "force": true,
+  "public_count": 3,
+  "counts": {
+    "migrated": 24,
+    "would_migrate": 0,
+    "skipped": 0,
+    "failed": 101
+  },
+  "results": [
+    {
+      "source": "9021/sample_1.py",
+      "slug": "9021__sample_1",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/9021__sample_1",
+      "error": null
+    },
+    {
+      "source": "9021/sample_2.py",
+      "slug": "9021__sample_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(20)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "9021/sample_3.py",
+      "slug": "9021__sample_3",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/9021__sample_3",
+      "error": null
+    },
+    {
+      "source": "9021/sample_4.py",
+      "slug": "9021__sample_4",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "9021/sample_5.py",
+      "slug": "",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No top-level function definition found."
+    },
+    {
+      "source": "9021/sample_6.py",
+      "slug": "9021__sample_6",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"is_valid_prefix_expression('12')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "9021/sample_7.py",
+      "slug": "9021__sample_7",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"find_word('word_search_1.txt', 'PLATINUM')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1/question_1.py",
+      "slug": "final__1__question_1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 0, 10)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1/question_2.py",
+      "slug": "final__1__question_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1/question_3.py",
+      "slug": "final__1__question_3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(2)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1/question_4.py",
+      "slug": "final__1__question_4",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(2, 2)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1/question_5.py",
+      "slug": "final__1__question_5",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(1914)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1/question_6.py",
+      "slug": "final__1__question_6",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1/question_7.py",
+      "slug": "final__1__question_7",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(2)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1/question_8.py",
+      "slug": "final__1__question_8",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"f('ABCDEFGH')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_1.py",
+      "slug": "final__1754923206907syv__item__sample1__question_1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 0, 10)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_2.py",
+      "slug": "final__1754923206907syv__item__sample1__question_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_3.py",
+      "slug": "final__1754923206907syv__item__sample1__question_3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(2)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_4.py",
+      "slug": "final__1754923206907syv__item__sample1__question_4",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(2, 2)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_5.py",
+      "slug": "final__1754923206907syv__item__sample1__question_5",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(1914)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_6.py",
+      "slug": "final__1754923206907syv__item__sample1__question_6",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_7.py",
+      "slug": "final__1754923206907syv__item__sample1__question_7",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(2)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_8.py",
+      "slug": "final__1754923206907syv__item__sample1__question_8",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"f('ABCDEFGH')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_1.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_1",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_2.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(20)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_3.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_3",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_4.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_4",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_5.py",
+      "slug": "",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No top-level function definition found."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_6.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_6",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"is_valid_prefix_expression('12')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_7.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_7",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"find_word('word_search_1.txt', 'PLATINUM')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T1_1.py",
+      "slug": "final__1754923206907syv__item__rounding__21t1_1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"f(0, 0, 'L')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T1_2.py",
+      "slug": "final__1754923206907syv__item__rounding__21t1_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T2_1.py",
+      "slug": "final__1754923206907syv__item__rounding__21t2_1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T2_2.py",
+      "slug": "final__1754923206907syv__item__rounding__21t2_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(1, 2)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T3_22T3_23T2.py",
+      "slug": "final__1754923206907syv__item__rounding__21t3_22t3_23t2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 0, 10)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 0, 10)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/20T3_1.py",
+      "slug": "final__1754923206907syv__item__item__20t3_1",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/20T3_2.py",
+      "slug": "final__1754923206907syv__item__item__20t3_2",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T1_1.py",
+      "slug": "final__1754923206907syv__item__item__21t1_1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 3, 0)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T2_1.py",
+      "slug": "final__1754923206907syv__item__item__21t2_1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T3_22T3_23T2_1.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_1",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T3_22T3_23T2_3.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_3",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T3_22t3_23T2_2.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f([])' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/22T1.py",
+      "slug": "final__1754923206907syv__item__item__22t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(1, 12, 1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'arithmetic_progressions([3, 3, 3, 3], 4)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/3.py",
+      "slug": "final__1754923206907syv__item__item__3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 0, 10)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/4.py",
+      "slug": "final__1754923206907syv__item__item__4",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Unsupported doctest source 'L = []': expected a direct function call."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/SAMPLE.py",
+      "slug": "final__1754923206907syv__item__item__sample",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Doctest example 'positive_gaps([])' has no expected output. Print-based problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 0, 10)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"words('Twelve will, believe me, be quite enough for your purpose.')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/21T2.py",
+      "slug": "final__1754923206907syv__item__item__21t2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 1, 1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Doctest example 'loop({1: 1}, 0)' has no expected output. Print-based problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/3.py",
+      "slug": "final__1754923206907syv__item__item__3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/4.py",
+      "slug": "final__1754923206907syv__item__item__4",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/5.py",
+      "slug": "final__1754923206907syv__item__item__5",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/6.py",
+      "slug": "final__1754923206907syv__item__item__6",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__6",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/21T2.py",
+      "slug": "final__1754923206907syv__item__dfs__21t2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Unsupported doctest source 'f([3, 8, 7, 3, 7, 3, 7, 8, 5], 3 * 3 * 7)': arguments must be Python literals."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/23T1.py",
+      "slug": "final__1754923206907syv__item__dfs__23t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/24T3.py",
+      "slug": "final__1754923206907syv__item__dfs__24t3",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__dfs__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/SAMPLE.py",
+      "slug": "final__1754923206907syv__item__dfs__sample",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Doctest example \"word_pairs('ABCDEFGHIJK')\" has no expected output. Print-based problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/_a.py",
+      "slug": "final__1754923206907syv__item__dfs__a",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__dfs__a",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/21T1.py",
+      "slug": "final__1754923206907syv__item__item__21t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0, 1, 10) # Top left corner' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/21T2.py",
+      "slug": "final__1754923206907syv__item__item__21t2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/21T3_22T3_23T2_1.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'area(0, 1, 5, 5)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/21T3_22T3_23T2_2.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_2",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/22T1.py",
+      "slug": "final__1754923206907syv__item__item__22t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'travel(0, 2, 0)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'cross(0, 3)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/SAMPLE.py",
+      "slug": "final__1754923206907syv__item__item__sample",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/_a.py",
+      "slug": "final__1754923206907syv__item__item__a",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/_b.py",
+      "slug": "final__1754923206907syv__item__item__b",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"f('x')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/21T1.py",
+      "slug": "final__1754923206907syv__item__item__21t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"f('1o')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/21T3_22T3_23T2.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/SAMPLE.py",
+      "slug": "final__1754923206907syv__item__item__sample",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"solve('1 + 2 = 4')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/20T3.py",
+      "slug": "final__1754923206907syv__item__item__20t3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'rectangle(1, 1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/21T1.py",
+      "slug": "final__1754923206907syv__item__item__21t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"f('  U  ', '8')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/21T2.py",
+      "slug": "final__1754923206907syv__item__item__21t2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"f('AB', 'C2D')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/22T1.py",
+      "slug": "final__1754923206907syv__item__item__22t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(4, 1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'triangle(1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'rhombus(1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f()' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/SAMPLE_1.py",
+      "slug": "final__1754923206907syv__item__item__sample_1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Doctest example 'vertical_bars()' has no expected output. Print-based problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/SAMPLE_2.py",
+      "slug": "final__1754923206907syv__item__item__sample_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Doctest example 'rectangle(0, 0)' has no expected output. Print-based problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/p1.py",
+      "slug": "final__1754923206907syv__item__item__p1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(2)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/p2.py",
+      "slug": "final__1754923206907syv__item__item__p2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(2)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/p4.py",
+      "slug": "final__1754923206907syv__item__item__p4",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(0)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/20T3.py",
+      "slug": "final__1754923206907syv__item__item__20t3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Unsupported doctest source 'average_of_digits_common_to(223444)    3.0': expected a direct function call."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/22T1_1.py",
+      "slug": "final__1754923206907syv__item__item__22t1_1",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t1_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/22T1_2.py",
+      "slug": "final__1754923206907syv__item__item__22t1_2",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t1_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t2_25t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__23t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/3.py",
+      "slug": "final__1754923206907syv__item__item__3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/4.py",
+      "slug": "final__1754923206907syv__item__item__4",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__4",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/5.py",
+      "slug": "final__1754923206907syv__item__item__5",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(32, 49)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/6.py",
+      "slug": "final__1754923206907syv__item__item__6",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(10, 20)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/7.py",
+      "slug": "final__1754923206907syv__item__item__7",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(2, 1)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/10.py",
+      "slug": "final__1754923206907syv__item__item__10",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(1914)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/20T3_1.py",
+      "slug": "final__1754923206907syv__item__item__20t3_1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"number_of_words_in_dictionary('company', 'company')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/20T3_2.py",
+      "slug": "final__1754923206907syv__item__item__20t3_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Unsupported doctest source \"found_word_in('MANGANESE', 'word_search_1.txt'),        found_word_in('GOLD', 'word_search_1.txt')\": expected a direct function call."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/21T1.py",
+      "slug": "final__1754923206907syv__item__item__21t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"f('edgar_poe.txt', 50)\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/21T2.py",
+      "slug": "final__1754923206907syv__item__item__21t2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"f('edgar_poe.txt')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/21T3_22T3_23T2.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"statistics('text_file_1.txt')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/22T1.py",
+      "slug": "final__1754923206907syv__item__item__22t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"longest_words('edgar_poe_1.txt')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"unknown_words('edgar_poe_1.txt')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"unknown_words('edgar_poe_1.txt')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"find('AROSN')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/2/sample_1.py",
+      "slug": "final__2__sample_1",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_1",
+      "error": null
+    },
+    {
+      "source": "final/2/sample_2.py",
+      "slug": "final__2__sample_2",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for 'f(20)' is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/2/sample_3.py",
+      "slug": "final__2__sample_3",
+      "status": "migrated",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_3",
+      "error": null
+    },
+    {
+      "source": "final/2/sample_4.py",
+      "slug": "final__2__sample_4",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No doctest examples found in function docstring."
+    },
+    {
+      "source": "final/2/sample_5.py",
+      "slug": "",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No top-level function definition found."
+    },
+    {
+      "source": "final/2/sample_6.py",
+      "slug": "final__2__sample_6",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"is_valid_prefix_expression('12')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    },
+    {
+      "source": "final/2/sample_7.py",
+      "slug": "final__2__sample_7",
+      "status": "failed",
+      "output_dir": null,
+      "error": "Expected output for \"find_word('word_search_1.txt', 'PLATINUM')\" is not a Python literal. Print-based or formatted-output problems should be migrated manually."
+    }
+  ]
+}

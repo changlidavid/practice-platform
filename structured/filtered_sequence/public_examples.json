@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-1",
+    "input": "L = []\nn = 2",
+    "output": "[]"
+  },
+  {
+    "id": "example-2",
+    "input": "L = [7]\nn = 0",
+    "output": "[7]"
+  },
+  {
+    "id": "example-3",
+    "input": "L = [7]\nn = 1",
+    "output": "[7]"
+  }
+]

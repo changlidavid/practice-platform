@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-1",
+    "input": "n = 1",
+    "output": "[1]"
+  },
+  {
+    "id": "example-2",
+    "input": "n = 2",
+    "output": "[1, 1]"
+  },
+  {
+    "id": "example-3",
+    "input": "n = 3",
+    "output": "[1, 2, 1]"
+  }
+]

@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-1",
+    "input": "number = 13\nsum_of_digits = 2",
+    "output": "[]"
+  },
+  {
+    "id": "example-2",
+    "input": "number = 222\nsum_of_digits = 2",
+    "output": "[2]"
+  },
+  {
+    "id": "example-3",
+    "input": "number = 123\nsum_of_digits = 6",
+    "output": "[123]"
+  }
+]

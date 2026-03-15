@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-1",
+    "input": "L = [3, 3333, 33]\nd = 3",
+    "output": "7"
+  },
+  {
+    "id": "example-2",
+    "input": "L = [13, 14, 258]\nd = 9",
+    "output": "0"
+  },
+  {
+    "id": "example-3",
+    "input": "L = [1, 21, 30, 1411]\nd = 1",
+    "output": "5"
+  }
+]

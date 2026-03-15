@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 from datetime import datetime, timedelta, timezone
 
 import pytest
@@ -10,6 +11,7 @@ from fastapi.testclient import TestClient
 
 from app import runner
 from app import db
+from app import importer
 from app.config import get_paths
 from app.models import RunResult
 from app.web import create_app
@@ -76,13 +78,27 @@ def test_solution_put_and_run_contract(isolated_env, monkeypatch):
         _ = (conn, paths, row)
         _ = kwargs
         return 99, RunResult(
-            status="pass",
-            passed=5,
-            failed=0,
+            status="fail",
+            passed=2,
+            failed=1,
             exit_code=0,
             stdout="ok",
             stderr="",
             duration_ms=12,
+            feedback={
+                "mode": "run",
+                "summary": {"total": 3, "passed": 2, "failed": 1},
+                "public_examples": [
+                    {
+                        "id": "pub-1",
+                        "input": "n = 1",
+                        "expected": 2,
+                        "actual": 1,
+                        "passed": False,
+                        "message": "Wrong answer",
+                    }
+                ],
+            },
         )
 
     monkeypatch.setattr(runner, "run_problem", fake_run_problem)
@@ -91,9 +107,11 @@ def test_solution_put_and_run_contract(isolated_env, monkeypatch):
     assert run_resp.status_code == 200
     payload = run_resp.json()
     assert payload["attempt_id"] == 99
-    assert payload["status"] == "pass"
+    assert payload["mode"] == "run"
+    assert payload["status"] == "fail"
     assert payload["time_ms"] == 12
-    assert "output" in payload
+    assert payload["summary"]["total"] == 3
+    assert payload["public_examples"][0]["id"] == "pub-1"
 
 
 def test_practice_state_is_isolated_per_user(isolated_env, monkeypatch):
@@ -123,6 +141,7 @@ def test_practice_state_is_isolated_per_user(isolated_env, monkeypatch):
             stdout="ok",
             stderr="",
             duration_ms=8,
+            feedback={"mode": "run", "summary": {"total": 1, "passed": 1, "failed": 0}, "public_examples": []},
         )
 
     monkeypatch.setattr(runner, "run_problem", fake_run_problem)
@@ -139,6 +158,61 @@ def test_practice_state_is_isolated_per_user(isolated_env, monkeypatch):
     row_b = next(row for row in problems_b.json()["problems"] if int(row["id"]) == problem_id)
     assert int(row_b["attempts"]) == 0
     assert row_b["last_status"] == "never"
+
+
+def test_submit_api_returns_hidden_summary_and_first_failure_only(isolated_env, monkeypatch):
+    app = create_app()
+    client = TestClient(app)
+    _login(client)
+
+    problems = client.get("/api/problems").json()["problems"]
+    assert problems
+    problem_id = int(problems[0]["id"])
+
+    def fake_run_problem(conn, paths, row, **kwargs):
+        _ = (conn, paths, row, kwargs)
+        return 202, RunResult(
+            status="fail",
+            passed=4,
+            failed=1,
+            exit_code=0,
+            stdout="ok",
+            stderr="",
+            duration_ms=15,
+            feedback={
+                "mode": "submit",
+                "summary": {
+                    "total_hidden": 5,
+                    "passed_hidden": 4,
+                    "failed_hidden": 1,
+                },
+                "first_failure": {
+                    "case_id": "hid-1",
+                    "case_label": "Hidden case #1",
+                    "message": "Wrong answer",
+                    "failure_type": "Wrong Answer",
+                    "actual": [0, 0],
+                    "expected": [1, 2],
+                    "input_summary": "arg1=list(len=4), arg2=int",
+                },
+            },
+        )
+
+    monkeypatch.setattr(runner, "run_problem", fake_run_problem)
+
+    submit_resp = client.post(f"/api/submit/{problem_id}")
+    assert submit_resp.status_code == 200
+    payload = submit_resp.json()
+    assert payload["attempt_id"] == 202
+    assert payload["mode"] == "submit"
+    assert payload["summary"]["total_hidden"] == 5
+    assert payload["summary"]["passed_hidden"] == 4
+    assert payload["summary"]["failed_hidden"] == 1
+    assert payload["first_failure"]["case_id"] == "hid-1"
+    assert payload["first_failure"]["case_label"] == "Hidden case #1"
+    assert payload["first_failure"]["failure_type"] == "Wrong Answer"
+    dumped = json.dumps(payload)
+    assert "hidden_tests" not in dumped
 
 
 def test_solution_put_accepts_legacy_payload_key(isolated_env):
@@ -166,9 +240,67 @@ def test_api_requires_auth_session(isolated_env):
     assert resp.status_code == 401
 
 
+def test_api_me_returns_email_and_requires_auth(isolated_env):
+    app = create_app()
+    client = TestClient(app)
+
+    unauth = client.get("/api/me")
+    assert unauth.status_code == 401
+
+    _login(client, "me@example.com")
+    auth = client.get("/api/me")
+    assert auth.status_code == 200
+    assert auth.json()["email"] == "me@example.com"
+
+
 def test_index_redirects_to_login_when_not_authenticated(isolated_env):
     app = create_app()
     client = TestClient(app)
     resp = client.get("/", follow_redirects=False)
     assert resp.status_code == 303
     assert resp.headers["location"] == "/login"
+
+
+def test_problem_api_returns_public_examples_not_hidden_tests(isolated_env, tmp_path):
+    paths = get_paths()
+    bundle_root = tmp_path / "function_api_bundle"
+    problem_dir = bundle_root / "two_sum"
+    problem_dir.mkdir(parents=True, exist_ok=True)
+    (problem_dir / "meta.json").write_text(
+        json.dumps({"slug": "two_sum", "title": "Two Sum", "entry_function": "two_sum"}),
+        encoding="utf-8",
+    )
+    (problem_dir / "statement.md").write_text("# Two Sum\nReturn indices.\n", encoding="utf-8")
+    (problem_dir / "starter.py").write_text(
+        "def two_sum(nums, target):\n    return []\n",
+        encoding="utf-8",
+    )
+    (problem_dir / "public_examples.json").write_text(
+        json.dumps([{"id": "pub-1", "input": "nums=[2,7,11,15], target=9", "output": "[0,1]"}]),
+        encoding="utf-8",
+    )
+    (problem_dir / "hidden_tests.json").write_text(
+        json.dumps({"version": 1, "cases": [{"id": "hid-1", "args": [[2, 7, 11, 15], 9], "expected": [0, 1]}]}),
+        encoding="utf-8",
+    )
+
+    conn = db.connect(paths.db_path)
+    try:
+        db.init_db(conn)
+        importer.import_bundle(conn, paths, bundle_root)
+    finally:
+        conn.close()
+
+    app = create_app()
+    client = TestClient(app)
+    _login(client)
+
+    all_rows = client.get("/api/problems").json()["problems"]
+    target = next(row for row in all_rows if row["slug"] == "function_api_bundle:two_sum")
+    payload = client.get(f"/api/problems/{target['id']}").json()
+
+    assert payload["public_examples"]
+    assert payload["public_examples"][0]["id"] == "pub-1"
+    dumped = json.dumps(payload)
+    assert "hidden_tests" not in dumped
+    assert "hid-1" not in dumped

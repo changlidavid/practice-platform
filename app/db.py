@@ -45,6 +45,11 @@ def init_db(conn: sqlite3.Connection) -> None:
             description TEXT NOT NULL DEFAULT '',
             template_code TEXT NOT NULL DEFAULT '',
             doctest TEXT NOT NULL DEFAULT '',
+            evaluation_mode TEXT NOT NULL DEFAULT 'doctest',
+            entry_function TEXT NOT NULL DEFAULT '',
+            problem_dir_relpath TEXT NOT NULL DEFAULT '',
+            public_examples_json TEXT NOT NULL DEFAULT '[]',
+            statement_md TEXT NOT NULL DEFAULT '',
             created_at TEXT NOT NULL DEFAULT '',
             bundle_id INTEGER,
             source_relpath TEXT NOT NULL DEFAULT '',
@@ -191,6 +196,18 @@ def init_db(conn: sqlite3.Connection) -> None:
         conn.execute("ALTER TABLE problems ADD COLUMN template_code TEXT NOT NULL DEFAULT ''")
     if "doctest" not in problem_columns:
         conn.execute("ALTER TABLE problems ADD COLUMN doctest TEXT NOT NULL DEFAULT ''")
+    if "evaluation_mode" not in problem_columns:
+        conn.execute(
+            "ALTER TABLE problems ADD COLUMN evaluation_mode TEXT NOT NULL DEFAULT 'doctest'"
+        )
+    if "entry_function" not in problem_columns:
+        conn.execute("ALTER TABLE problems ADD COLUMN entry_function TEXT NOT NULL DEFAULT ''")
+    if "problem_dir_relpath" not in problem_columns:
+        conn.execute("ALTER TABLE problems ADD COLUMN problem_dir_relpath TEXT NOT NULL DEFAULT ''")
+    if "public_examples_json" not in problem_columns:
+        conn.execute("ALTER TABLE problems ADD COLUMN public_examples_json TEXT NOT NULL DEFAULT '[]'")
+    if "statement_md" not in problem_columns:
+        conn.execute("ALTER TABLE problems ADD COLUMN statement_md TEXT NOT NULL DEFAULT ''")
     if "created_at" not in problem_columns:
         conn.execute("ALTER TABLE problems ADD COLUMN created_at TEXT NOT NULL DEFAULT ''")
         conn.execute(
@@ -238,6 +255,11 @@ def upsert_problem(
     source_relpath: str,
     assets_manifest: list[str],
     content_hash: str,
+    evaluation_mode: str = "doctest",
+    entry_function: str = "",
+    problem_dir_relpath: str = "",
+    public_examples_json: str = "[]",
+    statement_md: str = "",
 ) -> None:
     safe_template_code = template_code
     if not safe_template_code.strip():
@@ -249,6 +271,11 @@ def upsert_problem(
     }
     has_legacy_prompt = "prompt_path" in problem_columns
     has_legacy_solution = "solution_path" in problem_columns
+    has_evaluation_mode = "evaluation_mode" in problem_columns
+    has_entry_function = "entry_function" in problem_columns
+    has_problem_dir_relpath = "problem_dir_relpath" in problem_columns
+    has_public_examples_json = "public_examples_json" in problem_columns
+    has_statement_md = "statement_md" in problem_columns
 
     insert_cols = [
         "bundle_id",
@@ -284,6 +311,27 @@ def upsert_problem(
         "assets_manifest_json = excluded.assets_manifest_json",
         "content_hash = excluded.content_hash",
     ]
+
+    if has_evaluation_mode:
+        insert_cols.append("evaluation_mode")
+        values.append(evaluation_mode)
+        update_assignments.append("evaluation_mode = excluded.evaluation_mode")
+    if has_entry_function:
+        insert_cols.append("entry_function")
+        values.append(entry_function)
+        update_assignments.append("entry_function = excluded.entry_function")
+    if has_problem_dir_relpath:
+        insert_cols.append("problem_dir_relpath")
+        values.append(problem_dir_relpath)
+        update_assignments.append("problem_dir_relpath = excluded.problem_dir_relpath")
+    if has_public_examples_json:
+        insert_cols.append("public_examples_json")
+        values.append(public_examples_json)
+        update_assignments.append("public_examples_json = excluded.public_examples_json")
+    if has_statement_md:
+        insert_cols.append("statement_md")
+        values.append(statement_md)
+        update_assignments.append("statement_md = excluded.statement_md")
 
     if has_legacy_prompt:
         compat_prompt_path = f"compat://prompt/{source_relpath or slug}"
@@ -373,6 +421,107 @@ def list_problems(conn: sqlite3.Connection, *, user_id: int | None = None) -> li
         """
     ).fetchall()
     return list(rows)
+
+
+def prune_bundles_not_in_source_roots(
+    conn: sqlite3.Connection, *, allowed_source_roots: list[str]
+) -> None:
+    normalized = {str(Path(root).resolve()) for root in allowed_source_roots}
+    bundle_rows = conn.execute("SELECT id, source_root FROM bundles").fetchall()
+    bundle_ids_to_remove = [
+        int(row["id"])
+        for row in bundle_rows
+        if str(Path(str(row["source_root"])).resolve()) not in normalized
+    ]
+    if not bundle_ids_to_remove:
+        return
+
+    placeholders = ", ".join("?" for _ in bundle_ids_to_remove)
+    problem_rows = conn.execute(
+        f"SELECT id FROM problems WHERE bundle_id IN ({placeholders})",
+        tuple(bundle_ids_to_remove),
+    ).fetchall()
+    problem_ids = [int(row["id"]) for row in problem_rows]
+    if problem_ids:
+        problem_placeholders = ", ".join("?" for _ in problem_ids)
+        conn.execute(
+            f"DELETE FROM attempts WHERE problem_id IN ({problem_placeholders})",
+            tuple(problem_ids),
+        )
+        conn.execute(
+            f"DELETE FROM user_solutions WHERE problem_id IN ({problem_placeholders})",
+            tuple(problem_ids),
+        )
+        conn.execute(
+            f"DELETE FROM user_problem_stats WHERE problem_id IN ({problem_placeholders})",
+            tuple(problem_ids),
+        )
+        conn.execute(
+            f"DELETE FROM problems WHERE id IN ({problem_placeholders})",
+            tuple(problem_ids),
+        )
+
+    conn.execute(
+        f"DELETE FROM bundle_assets WHERE bundle_id IN ({placeholders})",
+        tuple(bundle_ids_to_remove),
+    )
+    conn.execute(
+        f"DELETE FROM bundles WHERE id IN ({placeholders})",
+        tuple(bundle_ids_to_remove),
+    )
+    conn.commit()
+
+
+def prune_bundles_for_source_root_except(
+    conn: sqlite3.Connection, *, source_root: str, keep_bundle_id: int
+) -> None:
+    normalized_source_root = str(Path(source_root).resolve())
+    bundle_rows = conn.execute(
+        "SELECT id, source_root FROM bundles WHERE id != ?",
+        (keep_bundle_id,),
+    ).fetchall()
+    bundle_ids_to_remove = [
+        int(row["id"])
+        for row in bundle_rows
+        if str(Path(str(row["source_root"])).resolve()) == normalized_source_root
+    ]
+    if not bundle_ids_to_remove:
+        return
+
+    placeholders = ", ".join("?" for _ in bundle_ids_to_remove)
+    problem_rows = conn.execute(
+        f"SELECT id FROM problems WHERE bundle_id IN ({placeholders})",
+        tuple(bundle_ids_to_remove),
+    ).fetchall()
+    problem_ids = [int(row["id"]) for row in problem_rows]
+    if problem_ids:
+        problem_placeholders = ", ".join("?" for _ in problem_ids)
+        conn.execute(
+            f"DELETE FROM attempts WHERE problem_id IN ({problem_placeholders})",
+            tuple(problem_ids),
+        )
+        conn.execute(
+            f"DELETE FROM user_solutions WHERE problem_id IN ({problem_placeholders})",
+            tuple(problem_ids),
+        )
+        conn.execute(
+            f"DELETE FROM user_problem_stats WHERE problem_id IN ({problem_placeholders})",
+            tuple(problem_ids),
+        )
+        conn.execute(
+            f"DELETE FROM problems WHERE id IN ({problem_placeholders})",
+            tuple(problem_ids),
+        )
+
+    conn.execute(
+        f"DELETE FROM bundle_assets WHERE bundle_id IN ({placeholders})",
+        tuple(bundle_ids_to_remove),
+    )
+    conn.execute(
+        f"DELETE FROM bundles WHERE id IN ({placeholders})",
+        tuple(bundle_ids_to_remove),
+    )
+    conn.commit()
 
 
 def create_attempt(

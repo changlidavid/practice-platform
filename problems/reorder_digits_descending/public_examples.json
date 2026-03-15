@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-zero",
+    "input": "number = 0",
+    "output": "0"
+  },
+  {
+    "id": "example-positive",
+    "input": "number = 202",
+    "output": "220"
+  },
+  {
+    "id": "example-negative",
+    "input": "number = -3210123",
+    "output": "-3322110"
+  }
+]

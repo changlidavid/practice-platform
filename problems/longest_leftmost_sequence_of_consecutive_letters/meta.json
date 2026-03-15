@@ -1,0 +1,6 @@
+{
+  "slug": "longest_leftmost_sequence_of_consecutive_letters",
+  "title": "Longest Leftmost Sequence Of Consecutive Letters",
+  "entry_function": "longest_leftmost_sequence_of_consecutive_letters",
+  "evaluation_mode": "function_json"
+}

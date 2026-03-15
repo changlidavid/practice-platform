@@ -1,0 +1,138 @@
+{
+  "roots": [
+    "/home/changli/Desktop/9021tasks/problems",
+    "/home/changli/Desktop/9021tasks/structured"
+  ],
+  "dry_run": false,
+  "scanned_files": 32,
+  "changed_files": 8,
+  "manual_files": 0,
+  "issues": [
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/evaluate_prefix_expression/public_examples.json",
+      "example_id": "example-1",
+      "status": "changed",
+      "reason": "function_call"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/evaluate_prefix_expression/public_examples.json",
+      "example_id": "example-2",
+      "status": "changed",
+      "reason": "function_call"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/evaluate_prefix_expression/public_examples.json",
+      "example_id": "example-3",
+      "status": "changed",
+      "reason": "function_call"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/filtered_sequence/public_examples.json",
+      "example_id": "example-zero-threshold",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/filtered_sequence/public_examples.json",
+      "example_id": "example-mixed-runs",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/good_subsequences/public_examples.json",
+      "example_id": "example-1",
+      "status": "changed",
+      "reason": "function_call"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/good_subsequences/public_examples.json",
+      "example_id": "example-2",
+      "status": "changed",
+      "reason": "function_call"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/good_subsequences/public_examples.json",
+      "example_id": "example-3",
+      "status": "changed",
+      "reason": "function_call"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/longest_leftmost_sequence_of_consecutive_letters/public_examples.json",
+      "example_id": "example-1",
+      "status": "changed",
+      "reason": "function_call"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/longest_leftmost_sequence_of_consecutive_letters/public_examples.json",
+      "example_id": "example-2",
+      "status": "changed",
+      "reason": "function_call"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/longest_leftmost_sequence_of_consecutive_letters/public_examples.json",
+      "example_id": "example-3",
+      "status": "changed",
+      "reason": "function_call"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/two_sum/public_examples.json",
+      "example_id": "example-1",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/two_sum/public_examples.json",
+      "example_id": "example-2",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_1/public_examples.json",
+      "example_id": "example-2",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_1/public_examples.json",
+      "example_id": "example-3",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_2/public_examples.json",
+      "example_id": "example-1",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_2/public_examples.json",
+      "example_id": "example-2",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_2/public_examples.json",
+      "example_id": "example-3",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_1/public_examples.json",
+      "example_id": "example-1",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_1/public_examples.json",
+      "example_id": "example-2",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_1/public_examples.json",
+      "example_id": "example-3",
+      "status": "changed",
+      "reason": "tuple_assignment"
+    }
+  ]
+}

@@ -35,6 +35,15 @@ def _insert_user(email: str, password: str) -> None:
         conn.close()
 
 
+def _login_with_password(client: TestClient, email: str, password: str) -> None:
+    resp = client.post(
+        "/api/auth/login/password",
+        json={"email": email, "password": password},
+    )
+    assert resp.status_code == 200
+    assert resp.json()["ok"] is True
+
+
 def test_register_flow_creates_user_and_session(isolated_env, monkeypatch):
     sent = _install_code_capture(monkeypatch)
     client = TestClient(create_app())
@@ -120,3 +129,30 @@ def test_login_otp_rejects_unregistered(isolated_env, monkeypatch):
     resp = client.post("/api/auth/login/request_code", json={"email": "missing2@example.com"})
     assert resp.status_code == 404
     assert resp.json()["detail"] == "User not registered"
+
+
+def test_new_login_invalidates_previous_session(isolated_env):
+    email = "one-device@example.com"
+    password = "correct-password"
+    _insert_user(email, password)
+    app = create_app()
+    client_a = TestClient(app)
+    client_b = TestClient(app)
+
+    _login_with_password(client_a, email, password)
+    resp_a_before = client_a.get("/api/problems")
+    assert resp_a_before.status_code == 200
+
+    _login_with_password(client_b, email, password)
+    resp_b = client_b.get("/api/problems")
+    assert resp_b.status_code == 200
+
+    me_a_after = client_a.get("/api/me")
+    assert me_a_after.status_code == 401
+
+    resp_a_after = client_a.get("/api/problems")
+    assert resp_a_after.status_code == 401
+
+    index_a = client_a.get("/", follow_redirects=False)
+    assert index_a.status_code == 303
+    assert index_a.headers["location"] == "/login"

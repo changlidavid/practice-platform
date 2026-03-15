@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import os
+
 from app import db
-from app.config import ensure_workspace, get_paths
+from app.config import ensure_workspace, get_paths, load_env_file
 
 
 def test_create_app_bootstraps_problems_when_database_is_empty(tmp_path, monkeypatch, repo_root):
@@ -20,6 +22,16 @@ def test_create_app_bootstraps_problems_when_database_is_empty(tmp_path, monkeyp
         assert int(count_before["c"]) == 0
     finally:
         conn.close()
+
+
+def test_load_env_file_overrides_existing_bundle_paths(tmp_path, monkeypatch):
+    env_path = tmp_path / ".env"
+    env_path.write_text("PRACTICE_BUNDLE_PATHS=problems,structured\n", encoding="utf-8")
+    monkeypatch.setenv("PRACTICE_BUNDLE_PATHS", "problems")
+
+    load_env_file(tmp_path)
+
+    assert os.environ["PRACTICE_BUNDLE_PATHS"] == "problems,structured"
 
     from app.web import create_app
 

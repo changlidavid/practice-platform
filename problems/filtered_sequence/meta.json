@@ -1,0 +1,6 @@
+{
+  "slug": "filtered_sequence",
+  "title": "Filtered Sequence",
+  "entry_function": "filtered_sequence",
+  "evaluation_mode": "function_json"
+}

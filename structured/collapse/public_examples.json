@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-1",
+    "input": "number = 0",
+    "output": "0"
+  },
+  {
+    "id": "example-2",
+    "input": "number = 0",
+    "output": "0"
+  },
+  {
+    "id": "example-3",
+    "input": "number = 9",
+    "output": "9"
+  }
+]

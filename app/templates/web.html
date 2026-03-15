@@ -25,7 +25,7 @@
         {% for row in rows %}
         <button class="problem-item{% if row.id == selected_id %} active{% endif %}" data-problem-id="{{ row.id }}"
           type="button">
-          <span class="slug">{{ row.slug }}</span>
+          <span class="slug">{{ row.display_name }}</span>
           <span class="meta">
             <span class="status status-{{ row.last_status|lower }}">
               {{ row.last_status|upper }}
@@ -61,9 +61,10 @@
         <div class="actions">
           <button id="save-btn" type="button">Save</button>
           <button id="run-btn" type="button">Run</button>
+          <button id="submit-btn" type="button">Submit</button>
         </div>
 
-        <pre id="run-output"></pre>
+        <div id="run-output" aria-live="polite"></div>
       </div>
     </section>
   </main>

@@ -1,0 +1,6 @@
+{
+  "slug": "good_subsequences",
+  "title": "Good Subsequences",
+  "entry_function": "good_subsequences",
+  "evaluation_mode": "function_json"
+}

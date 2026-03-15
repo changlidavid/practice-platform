@@ -1,0 +1,28 @@
+{
+  "roots": [
+    "/home/changli/Desktop/9021tasks/problems",
+    "/home/changli/Desktop/9021tasks/structured"
+  ],
+  "dry_run": false,
+  "scanned_files": 32,
+  "changed_files": 2,
+  "rewritten_files": [
+    "/home/changli/Desktop/9021tasks/problems/filtered_sequence/public_examples.json",
+    "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_1/public_examples.json"
+  ],
+  "manual_files": 0,
+  "issues": [
+    {
+      "path": "/home/changli/Desktop/9021tasks/problems/filtered_sequence/public_examples.json",
+      "example_id": "example-empty",
+      "status": "changed",
+      "reason": "comma_assignment"
+    },
+    {
+      "path": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_1/public_examples.json",
+      "example_id": "example-1",
+      "status": "changed",
+      "reason": "comma_assignment"
+    }
+  ]
+}

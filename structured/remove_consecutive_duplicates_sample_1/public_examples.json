@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-1",
+    "input": "word = ''",
+    "output": "''"
+  },
+  {
+    "id": "example-2",
+    "input": "word = 'a'",
+    "output": "'a'"
+  },
+  {
+    "id": "example-3",
+    "input": "word = 'ab'",
+    "output": "'ab'"
+  }
+]

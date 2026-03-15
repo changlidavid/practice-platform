@@ -251,6 +251,11 @@ body {
   border-color: #155e75;
 }
 
+#submit-btn {
+  background: #334155;
+  border-color: #334155;
+}
+
 #run-output {
   margin: 0;
   padding: 10px;
@@ -263,6 +268,51 @@ body {
   font-family: "JetBrains Mono", "Consolas", monospace;
   font-size: 12px;
   flex-shrink: 0;
+}
+
+#run-output pre {
+  margin: 6px 0 0;
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.55);
+  overflow: auto;
+  white-space: pre-wrap;
+}
+
+.result-block {
+  display: grid;
+  gap: 10px;
+}
+
+.result-summary {
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.result-card {
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  border-radius: 8px;
+  padding: 10px;
+  background: rgba(15, 23, 42, 0.42);
+  display: grid;
+  gap: 6px;
+}
+
+.result-card h4 {
+  margin: 0 0 8px;
+  font-size: 13px;
+}
+
+.result-pass {
+  border-color: rgba(34, 197, 94, 0.45);
+}
+
+.result-fail {
+  border-color: rgba(248, 113, 113, 0.45);
+}
+
+.result-note {
+  color: #bbf7d0;
 }
 
 @media (max-width: 1000px) {

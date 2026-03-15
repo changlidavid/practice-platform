@@ -1,0 +1,192 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "case-1",
+      "args": [
+        ""
+      ],
+      "kwargs": {},
+      "expected": [
+        ""
+      ]
+    },
+    {
+      "id": "case-2",
+      "args": [
+        "aaa"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a"
+      ]
+    },
+    {
+      "id": "case-3",
+      "args": [
+        "aaabbb"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a",
+        "ab",
+        "b"
+      ]
+    },
+    {
+      "id": "case-4",
+      "args": [
+        "aaabbc"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a",
+        "ab",
+        "abc",
+        "ac",
+        "b",
+        "bc",
+        "c"
+      ]
+    },
+    {
+      "id": "case-5",
+      "args": [
+        "aaabbaaa"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a",
+        "ab",
+        "b",
+        "ba"
+      ]
+    },
+    {
+      "id": "case-6",
+      "args": [
+        "abbbcaaabccc"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a",
+        "ab",
+        "abc",
+        "ac",
+        "acb",
+        "b",
+        "ba",
+        "bac",
+        "bc",
+        "bca",
+        "c",
+        "ca",
+        "cab",
+        "cb"
+      ]
+    },
+    {
+      "id": "case-7",
+      "args": [
+        "abbbcaaabcccaaa"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a",
+        "ab",
+        "abc",
+        "ac",
+        "acb",
+        "b",
+        "ba",
+        "bac",
+        "bc",
+        "bca",
+        "c",
+        "ca",
+        "cab",
+        "cb",
+        "cba"
+      ]
+    },
+    {
+      "id": "case-8",
+      "args": [
+        "abbbcaaabcccaaabbbbbccab"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a",
+        "ab",
+        "abc",
+        "ac",
+        "acb",
+        "b",
+        "ba",
+        "bac",
+        "bc",
+        "bca",
+        "c",
+        "ca",
+        "cab",
+        "cb",
+        "cba"
+      ]
+    },
+    {
+      "id": "edge-all-distinct-in-order",
+      "args": [
+        "abc"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a",
+        "ab",
+        "abc",
+        "ac",
+        "b",
+        "bc",
+        "c"
+      ]
+    },
+    {
+      "id": "edge-all-distinct-reversed",
+      "args": [
+        "cba"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a",
+        "b",
+        "ba",
+        "c",
+        "ca",
+        "cb",
+        "cba"
+      ]
+    },
+    {
+      "id": "edge-alternating-repeats",
+      "args": [
+        "abab"
+      ],
+      "kwargs": {},
+      "expected": [
+        "",
+        "a",
+        "ab",
+        "b",
+        "ba"
+      ]
+    }
+  ]
+}

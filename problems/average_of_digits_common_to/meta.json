@@ -1,0 +1,6 @@
+{
+  "slug": "average_of_digits_common_to",
+  "title": "Average of Digits Common To",
+  "entry_function": "average_of_digits_common_to",
+  "evaluation_mode": "function_json"
+}

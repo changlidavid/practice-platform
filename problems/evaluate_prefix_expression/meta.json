@@ -1,0 +1,6 @@
+{
+  "slug": "evaluate_prefix_expression",
+  "title": "Evaluate Prefix Expression",
+  "entry_function": "evaluate_prefix_expression",
+  "evaluation_mode": "function_json"
+}

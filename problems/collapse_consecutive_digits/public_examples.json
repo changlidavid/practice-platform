@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-zero",
+    "input": "number = 0",
+    "output": "0"
+  },
+  {
+    "id": "example-symmetric",
+    "input": "number = -1111222232222111",
+    "output": "-12321"
+  },
+  {
+    "id": "example-mixed-runs",
+    "input": "number = 1155523335551116111666",
+    "output": "152351616"
+  }
+]

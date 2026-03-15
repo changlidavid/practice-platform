@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "case-1",
+      "args": [
+        1
+      ],
+      "kwargs": {},
+      "expected": 1
+    },
+    {
+      "id": "case-2",
+      "args": [
+        12
+      ],
+      "kwargs": {},
+      "expected": 112
+    },
+    {
+      "id": "case-3",
+      "args": [
+        321
+      ],
+      "kwargs": {},
+      "expected": 332111
+    },
+    {
+      "id": "case-4",
+      "args": [
+        2143
+      ],
+      "kwargs": {},
+      "expected": 2111144433
+    },
+    {
+      "id": "case-5",
+      "args": [
+        3000
+      ],
+      "kwargs": {},
+      "expected": 333
+    },
+    {
+      "id": "case-6",
+      "args": [
+        40025000170
+      ],
+      "kwargs": {},
+      "expected": 4422222511111117777
+    }
+  ]
+}

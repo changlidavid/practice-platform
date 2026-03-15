@@ -1,0 +1,6 @@
+{
+  "slug": "two_sum",
+  "title": "Two Sum",
+  "entry_function": "two_sum",
+  "evaluation_mode": "function_json"
+}

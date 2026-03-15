@@ -1,0 +1,144 @@
+{
+  "structured_root": "/home/changli/Desktop/9021tasks/structured",
+  "dry_run": false,
+  "counts": {
+    "renamed": 7,
+    "unchanged": 15,
+    "skipped": 0,
+    "failed": 0
+  },
+  "results": [
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/collapse",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/collapse",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/count_of_given_digit_in_numbers_in_list",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/count_of_given_digit_in_numbers_in_list",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/f",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/f_dfs_a",
+      "status": "renamed",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/filtered_sequence",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/filtered_sequence",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__1",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/remove_consecutive_duplicates_1",
+      "status": "renamed",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/f_24t3",
+      "status": "renamed",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_1",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/remove_consecutive_duplicates_sample_1",
+      "status": "renamed",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_3",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/good_subsequences_sample_3",
+      "status": "renamed",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_1",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/remove_consecutive_duplicates_2_sample_1",
+      "status": "renamed",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_3",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/good_subsequences_2_sample_3",
+      "status": "renamed",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/good_subsequences",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/good_subsequences",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/is_heterosquare",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/is_heterosquare",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/longest_leftmost_sequence_of_consecutive_letters",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/longest_leftmost_sequence_of_consecutive_letters",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/pascal_triangle_line",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/pascal_triangle_line",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/rearrange",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/rearrange",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/remove_consecutive_duplicates",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/remove_consecutive_duplicates",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/reorder",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/reorder",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/single_factors",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/single_factors",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/subnumbers_whose_digits_add_up_to",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/subnumbers_whose_digits_add_up_to",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/sum_discarding_carry_overs",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/sum_discarding_carry_overs",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/transform",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/transform",
+      "status": "unchanged",
+      "reason": ""
+    },
+    {
+      "old_dir": "/home/changli/Desktop/9021tasks/structured/upp",
+      "new_dir": "/home/changli/Desktop/9021tasks/structured/upp",
+      "status": "unchanged",
+      "reason": ""
+    }
+  ]
+}

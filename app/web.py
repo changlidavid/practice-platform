@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import hmac
 import hashlib
+import json
 import os
 import re
 import secrets
@@ -248,6 +249,7 @@ def _verify_otp(conn, *, email: str, purpose: str, code: str, now: datetime) -> 
 
 def _create_session_response(conn, *, email: str, now: datetime) -> JSONResponse:
     token = secrets.token_urlsafe(32)
+    conn.execute("DELETE FROM auth_sessions WHERE email = ?", (email,))
     conn.execute(
         """
         INSERT INTO auth_sessions(email, token_hash, created_at, expires_at)
@@ -328,20 +330,27 @@ def _bootstrap(conn, paths) -> None:
     else:
         candidates = [paths.source_bundle]
 
+    imported_roots: list[str] = []
     for source_root in candidates:
         if not source_root.exists() or not source_root.is_dir():
             continue
         try:
             importer.import_bundle(conn, paths, source_root)
+            imported_roots.append(str(source_root.resolve()))
         except (FileNotFoundError, RuntimeError):
             # Keep startup resilient when a configured bundle path is invalid.
             continue
+    if imported_roots:
+        db.prune_bundles_not_in_source_roots(conn, allowed_source_roots=imported_roots)
 
 
 def _normalize_row(row: Any) -> dict[str, Any]:
+    slug = str(row["slug"])
+    display_name = slug.split(":", 1)[1] if ":" in slug else slug
     return {
         "id": int(row["id"]),
-        "slug": str(row["slug"]),
+        "slug": slug,
+        "display_name": display_name,
         "title": str(row["title"]),
         "bundle_name": str(row["bundle_name"]),
         "source_relpath": str(row["source_relpath"]),
@@ -379,6 +388,23 @@ def _render_markdown(md_text: str) -> str:
     if markdown is None:
         return f"<pre>{escape(md_text)}</pre>"
     return markdown.markdown(md_text, extensions=["fenced_code", "tables", "nl2br"])
+
+
+def _public_examples(row: Any) -> list[dict[str, Any]]:
+    raw = str(row["public_examples_json"] or "").strip()
+    if not raw:
+        return []
+    try:
+        parsed = json.loads(raw)
+    except json.JSONDecodeError:
+        return []
+    if isinstance(parsed, list):
+        return [item for item in parsed if isinstance(item, dict)]
+    if isinstance(parsed, dict):
+        items = parsed.get("examples")
+        if isinstance(items, list):
+            return [item for item in items if isinstance(item, dict)]
+    return []
 
 
 def create_app() -> FastAPI:
@@ -650,6 +676,11 @@ def create_app() -> FastAPI:
         response.delete_cookie(key="session", path="/")
         return response
 
+    @app.get("/api/me")
+    def api_me(request: Request) -> dict[str, str]:
+        email = _require_session_api(request)
+        return {"email": email}
+
     @app.get("/api/problems")
     def api_problems(request: Request) -> dict[str, Any]:
         conn = db.connect(get_paths().db_path)
@@ -680,6 +711,9 @@ def create_app() -> FastAPI:
                 "problem": {
                     "id": int(row["id"]),
                     "slug": str(row["slug"]),
+                    "display_name": str(row["slug"]).split(":", 1)[1]
+                    if ":" in str(row["slug"])
+                    else str(row["slug"]),
                     "title": str(row["title"]),
                     "description": str(row["description"]),
                     "source_relpath": str(row["source_relpath"]),
@@ -687,6 +721,7 @@ def create_app() -> FastAPI:
                 "statement_markdown": statement_md,
                 "statement_html": statement_html,
                 "statement_path": str(statement_file),
+                "public_examples": _public_examples(row),
             }
         finally:
             conn.close()
@@ -771,6 +806,7 @@ def create_app() -> FastAPI:
                 row,
                 user_id=int(user["id"]),
                 solution_content=str(user_solution["content"]),
+                function_json_feedback_mode="run",
             )
             db.update_user_problem_stats_after_run(
                 conn,
@@ -778,16 +814,63 @@ def create_app() -> FastAPI:
                 problem_id=int(row["id"]),
                 status=result.status,
             )
-            output = (result.stdout + "\n" + result.stderr).strip()
-            return {
+            payload: dict[str, Any] = {
                 "attempt_id": attempt_id,
+                "mode": "run",
                 "status": result.status,
                 "passed": result.passed,
                 "failed": result.failed,
                 "exit_code": result.exit_code,
                 "time_ms": result.duration_ms,
-                "output": output,
             }
+            if result.feedback is not None:
+                payload.update(result.feedback)
+            else:
+                payload["output"] = (result.stdout + "\n" + result.stderr).strip()
+            return payload
+        finally:
+            conn.close()
+
+    @app.post("/api/submit/{problem_id}")
+    def api_submit(problem_id: int, request: Request) -> dict[str, Any]:
+        paths = get_paths()
+        conn = db.connect(paths.db_path)
+        try:
+            user = _require_session_user(conn, request)
+            row = _problem_or_404(conn, problem_id)
+            user_solution = db.ensure_user_solution(
+                conn,
+                user_id=int(user["id"]),
+                problem_row=row,
+            )
+            attempt_id, result = runner.run_problem(
+                conn,
+                paths,
+                row,
+                user_id=int(user["id"]),
+                solution_content=str(user_solution["content"]),
+                function_json_feedback_mode="submit",
+            )
+            db.update_user_problem_stats_after_run(
+                conn,
+                user_id=int(user["id"]),
+                problem_id=int(row["id"]),
+                status=result.status,
+            )
+            payload = {
+                "attempt_id": attempt_id,
+                "mode": "submit",
+                "status": result.status,
+                "passed": result.passed,
+                "failed": result.failed,
+                "exit_code": result.exit_code,
+                "time_ms": result.duration_ms,
+            }
+            if result.feedback is not None:
+                payload.update(result.feedback)
+            else:
+                payload["output"] = (result.stdout + "\n" + result.stderr).strip()
+            return payload
         finally:
             conn.close()
 

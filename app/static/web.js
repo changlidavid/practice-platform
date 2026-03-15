@@ -7,6 +7,8 @@ let hasLoadedSolution = false;
 let lastLoadedContent = "";
 let editorTouched = false;
 let suppressEditorTouched = false;
+let sessionCheckTimer = null;
+let isRedirectingToLogin = false;
 
 const statusEl = document.getElementById("global-status");
 const statementTitleEl = document.getElementById("statement-title");
@@ -18,12 +20,70 @@ const editorEl = document.getElementById("editor");
 fallbackTextarea = document.getElementById("editor-fallback");
 const monacoRootEl = document.getElementById("monaco-root");
 const outputEl = document.getElementById("run-output");
+const problemItemsEl = document.getElementById("problem-items");
 const saveBtn = document.getElementById("save-btn");
 const runBtn = document.getElementById("run-btn");
+const submitBtn = document.getElementById("submit-btn");
 const logoutBtn = document.getElementById("logout-btn");
+
+function redirectToLogin() {
+  if (isRedirectingToLogin) {
+    return;
+  }
+  isRedirectingToLogin = true;
+  if (sessionCheckTimer != null) {
+    window.clearInterval(sessionCheckTimer);
+    sessionCheckTimer = null;
+  }
+  window.location.href = "/login";
+}
 
 function setStatus(message) {
   statusEl.textContent = message;
+}
+
+function formatValue(value) {
+  if (typeof value === "string") {
+    return value;
+  }
+  if (typeof value === "undefined") {
+    return "(not provided)";
+  }
+  return JSON.stringify(value, null, 2);
+}
+
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+}
+
+function renderPublicExamples(examples) {
+  if (!Array.isArray(examples) || examples.length === 0) {
+    return "";
+  }
+  const blocks = examples.map((example, index) => {
+    const id = example.id ? String(example.id) : `example-${index + 1}`;
+    const input = example.input ?? example.args ?? "(not provided)";
+    const output = example.output ?? example.expected ?? "(not provided)";
+    const note = typeof example.note === "string" ? example.note : "";
+    const inputText =
+      typeof input === "string" ? input : JSON.stringify(input, null, 2);
+    const outputText =
+      typeof output === "string" ? output : JSON.stringify(output, null, 2);
+    return (
+      `<section class="public-example">` +
+      `<h4>${escapeHtml(id)}</h4>` +
+      `<div><strong>Input</strong></div>` +
+      `<pre>${escapeHtml(inputText)}</pre>` +
+      `<div><strong>Output</strong></div>` +
+      `<pre>${escapeHtml(outputText)}</pre>` +
+      (note ? `<p>${escapeHtml(note)}</p>` : "") +
+      `</section>`
+    );
+  });
+  return `<section class="public-examples"><h3>Public Examples</h3>${blocks.join("")}</section>`;
 }
 
 function asEditorText(value) {
@@ -129,11 +189,57 @@ function setActiveProblem(problemId) {
   });
 }
 
+function problemItemMarkup(row, isActive) {
+  const label = row.display_name || row.slug || row.title || `problem-${row.id}`;
+  return (
+    `<button class="problem-item${isActive ? " active" : ""}" data-problem-id="${escapeHtml(row.id)}" type="button">` +
+    `<span class="slug">${escapeHtml(label)}</span>` +
+    `<span class="meta">` +
+    `<span class="status status-${escapeHtml(String(row.last_status || "never").toLowerCase())}">` +
+    `${escapeHtml(String(row.last_status || "never").toUpperCase())}` +
+    `</span>` +
+    `<span class="attempts">${escapeHtml(row.attempts ?? 0)}x</span>` +
+    `</span>` +
+    `<span class="last-run">${escapeHtml(row.last_run || "-")}</span>` +
+    `</button>`
+  );
+}
+
+function bindProblemItemListeners() {
+  document.querySelectorAll(".problem-item").forEach((el) => {
+    el.addEventListener("click", () => {
+      void loadProblem(Number(el.dataset.problemId));
+    });
+  });
+}
+
+function renderProblemList(rows) {
+  if (!problemItemsEl) {
+    return;
+  }
+  const safeRows = Array.isArray(rows) ? rows : [];
+  if (safeRows.length === 0) {
+    problemItemsEl.innerHTML = "";
+    currentProblemId = null;
+    return;
+  }
+
+  const availableIds = new Set(safeRows.map((row) => Number(row.id)));
+  if (currentProblemId == null || !availableIds.has(Number(currentProblemId))) {
+    currentProblemId = Number(safeRows[0].id);
+  }
+
+  problemItemsEl.innerHTML = safeRows
+    .map((row) => problemItemMarkup(row, Number(row.id) === Number(currentProblemId)))
+    .join("");
+  bindProblemItemListeners();
+}
+
 async function fetchJSON(url, options = {}) {
   const res = await fetch(url, options);
   if (!res.ok) {
     if (res.status === 401) {
-      window.location.href = "/login";
+      redirectToLogin();
       throw new Error("Unauthorized");
     }
     let message = `Request failed: ${res.status}`;
@@ -155,6 +261,48 @@ async function fetchJSON(url, options = {}) {
   return await res.json();
 }
 
+function startSessionCheck() {
+  if (!document.getElementById("logout-btn")) {
+    return;
+  }
+  if (sessionCheckTimer != null) {
+    return;
+  }
+  let inFlight = false;
+  const check = async () => {
+    if (inFlight || isRedirectingToLogin) {
+      return;
+    }
+    inFlight = true;
+    try {
+      const res = await fetch("/api/me", {
+        method: "GET",
+        cache: "no-store",
+        headers: { Accept: "application/json" },
+      });
+      if (res.status === 401) {
+        redirectToLogin();
+      }
+    } catch (_err) {
+      // Ignore transient network errors; other API calls still handle auth failures.
+    } finally {
+      inFlight = false;
+    }
+  };
+  void check();
+  sessionCheckTimer = window.setInterval(check, 5000);
+  window.addEventListener(
+    "beforeunload",
+    () => {
+      if (sessionCheckTimer != null) {
+        window.clearInterval(sessionCheckTimer);
+        sessionCheckTimer = null;
+      }
+    },
+    { once: true },
+  );
+}
+
 async function loadProblem(problemId) {
   try {
     currentProblemId = problemId;
@@ -163,16 +311,18 @@ async function loadProblem(problemId) {
 
     const data = await fetchJSON(`/api/problems/${problemId}`);
     const solution = await fetchJSON(`/api/solution/${problemId}`);
-    statementTitleEl.textContent = data.problem.slug;
-    editorTitleEl.textContent = `Solution: ${data.problem.slug}`;
+    const label = data.problem.display_name || data.problem.slug;
+    statementTitleEl.textContent = label;
+    editorTitleEl.textContent = `Solution: ${label}`;
     statementPathEl.textContent = data.statement_path;
     solutionPathEl.textContent = solution.path;
-    statementContentEl.innerHTML = data.statement_html;
+    const publicExamplesHtml = renderPublicExamples(data.public_examples);
+    statementContentEl.innerHTML = data.statement_html + publicExamplesHtml;
     const loadedContent = asEditorText(solution.content);
     lastLoadedContent = loadedContent;
     hasLoadedSolution = true;
     setEditorValue(loadedContent);
-    outputEl.textContent = "";
+    clearOutput();
 
     setStatus("Ready");
   } catch (err) {
@@ -206,25 +356,119 @@ async function saveCurrent() {
 }
 
 function appendOutput(chunk) {
-  outputEl.textContent += chunk;
+  outputEl.innerHTML += `<pre>${escapeHtml(chunk)}</pre>`;
   outputEl.scrollTop = outputEl.scrollHeight;
+}
+
+function clearOutput() {
+  outputEl.innerHTML = "";
+}
+
+function renderLegacyOutput(result) {
+  const summary =
+    `[done] attempt=${result.attempt_id} status=${result.status} ` +
+    `passed=${result.passed} failed=${result.failed} time=${result.time_ms}ms`;
+  const body = result.output || "(no output)";
+  outputEl.innerHTML =
+    `<section class="result-block">` +
+    `<div class="result-summary">${escapeHtml(summary)}</div>` +
+    `<pre>${escapeHtml(body)}</pre>` +
+    `</section>`;
+}
+
+function renderRunResult(result) {
+  if (!Array.isArray(result.public_examples)) {
+    renderLegacyOutput(result);
+    return;
+  }
+  const summary = result.summary || {};
+  const cards = result.public_examples.map((example) => {
+    const message = example.message ? `<div><strong>Message</strong>: ${escapeHtml(example.message)}</div>` : "";
+    return (
+      `<section class="result-card ${example.passed ? "result-pass" : "result-fail"}">` +
+      `<h4>${escapeHtml(example.id || "example")}</h4>` +
+      `<div><strong>Status</strong>: ${example.passed ? "PASS" : "FAIL"}</div>` +
+      `<div><strong>Input</strong></div>` +
+      `<pre>${escapeHtml(formatValue(example.input))}</pre>` +
+      `<div><strong>Expected</strong></div>` +
+      `<pre>${escapeHtml(formatValue(example.expected))}</pre>` +
+      `<div><strong>Actual</strong></div>` +
+      `<pre>${escapeHtml(formatValue(example.actual))}</pre>` +
+      message +
+      `</section>`
+    );
+  });
+  outputEl.innerHTML =
+    `<section class="result-block">` +
+    `<div class="result-summary">` +
+    `Public examples: ${escapeHtml(summary.passed ?? 0)} / ${escapeHtml(summary.total ?? 0)} passed` +
+    `</div>` +
+    `${cards.join("")}` +
+    `</section>`;
+}
+
+function renderSubmitResult(result) {
+  if (!result.summary || !Object.prototype.hasOwnProperty.call(result.summary, "total_hidden")) {
+    renderLegacyOutput(result);
+    return;
+  }
+  const summary = result.summary;
+  const failure = result.first_failure;
+  let failureHtml = `<div class="result-note">All hidden tests passed.</div>`;
+  if (failure) {
+    const failureType = failure.failure_type || "Failure";
+    const actualHtml = Object.prototype.hasOwnProperty.call(failure, "actual")
+      ? `<div><strong>Actual</strong></div><pre>${escapeHtml(formatValue(failure.actual))}</pre>`
+      : "";
+    const expectedHtml = Object.prototype.hasOwnProperty.call(failure, "expected")
+      ? `<div><strong>Expected</strong></div><pre>${escapeHtml(formatValue(failure.expected))}</pre>`
+      : "";
+    const inputSummaryHtml = failure.input_summary
+      ? `<div><strong>Input summary</strong>: ${escapeHtml(failure.input_summary)}</div>`
+      : "";
+    failureHtml =
+      `<section class="result-card result-fail">` +
+      `<h4>First Hidden Failure</h4>` +
+      `<div><strong>${escapeHtml(failure.case_label || failure.case_id || "Hidden case")}</strong></div>` +
+      `<div><strong>Failure type</strong>: ${escapeHtml(failureType)}</div>` +
+      `<div><strong>Message</strong>: ${escapeHtml(failure.message || "Failure")}</div>` +
+      `${actualHtml}` +
+      `${expectedHtml}` +
+      `${inputSummaryHtml}` +
+      `</section>`;
+  }
+  outputEl.innerHTML =
+    `<section class="result-block">` +
+    `<div class="result-summary">` +
+    `Hidden tests: ${escapeHtml(summary.passed_hidden ?? 0)} / ${escapeHtml(summary.total_hidden ?? 0)} passed` +
+    `</div>` +
+    `${failureHtml}` +
+    `</section>`;
+}
+
+function renderResult(result, action) {
+  if (result && typeof result.error === "string" && result.error !== "") {
+    renderError(result.error);
+    return;
+  }
+  if (action === "submit") {
+    renderSubmitResult(result);
+    return;
+  }
+  renderRunResult(result);
+}
+
+function renderError(message) {
+  outputEl.innerHTML =
+    `<section class="result-block">` +
+    `<div class="result-summary result-fail">Error</div>` +
+    `<pre>${escapeHtml(message)}</pre>` +
+    `</section>`;
 }
 
 async function refreshProblemList() {
   const data = await fetchJSON("/api/problems");
-  for (const row of data.problems) {
-    const btn = document.querySelector(`.problem-item[data-problem-id='${row.id}']`);
-    if (!btn) {
-      continue;
-    }
-    const statusNode = btn.querySelector(".status");
-    const attemptsNode = btn.querySelector(".attempts");
-    const lastRunNode = btn.querySelector(".last-run");
-    statusNode.textContent = row.last_status.toUpperCase();
-    statusNode.className = `status status-${row.last_status.toLowerCase()}`;
-    attemptsNode.textContent = `${row.attempts}x`;
-    lastRunNode.textContent = row.last_run || "-";
-  }
+  renderProblemList(data.problems || []);
 }
 
 async function runCurrent() {
@@ -233,33 +477,49 @@ async function runCurrent() {
   }
 
   try {
-    outputEl.textContent = "";
+    clearOutput();
     setStatus("Saving...");
     await saveCurrent();
 
-    setStatus("Running doctests...");
+    setStatus("Running tests...");
     const result = await fetchJSON(`/api/run/${currentProblemId}`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
     });
-    appendOutput(
-      `[done] attempt=${result.attempt_id} status=${result.status} ` +
-        `passed=${result.passed} failed=${result.failed} time=${result.time_ms}ms\n\n`,
-    );
-    appendOutput(result.output || "(no output)\n");
+    renderResult(result, "run");
     setStatus(`Run complete: ${result.status.toUpperCase()}`);
     await refreshProblemList();
   } catch (err) {
-    appendOutput(`[error] ${err.message}\n`);
+    renderError(err.message);
     setStatus(`Run failed: ${err.message}`);
   }
 }
 
-document.querySelectorAll(".problem-item").forEach((el) => {
-  el.addEventListener("click", () => {
-    void loadProblem(Number(el.dataset.problemId));
-  });
-});
+async function submitCurrent() {
+  if (currentProblemId == null) {
+    return;
+  }
+
+  try {
+    clearOutput();
+    setStatus("Saving...");
+    await saveCurrent();
+
+    setStatus("Submitting...");
+    const result = await fetchJSON(`/api/submit/${currentProblemId}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+    });
+    renderResult(result, "submit");
+    setStatus(`Submit complete: ${result.status.toUpperCase()}`);
+    await refreshProblemList();
+  } catch (err) {
+    renderError(err.message);
+    setStatus(`Submit failed: ${err.message}`);
+  }
+}
+
+bindProblemItemListeners();
 
 saveBtn.addEventListener("click", () => {
   void saveCurrent()
@@ -273,6 +533,12 @@ saveBtn.addEventListener("click", () => {
 runBtn.addEventListener("click", () => {
   void runCurrent();
 });
+
+if (submitBtn) {
+  submitBtn.addEventListener("click", () => {
+    void submitCurrent();
+  });
+}
 
 if (logoutBtn) {
   logoutBtn.addEventListener("click", () => {
@@ -293,6 +559,10 @@ if (fallbackTextarea) {
   });
 }
 
+document.addEventListener("DOMContentLoaded", () => {
+  startSessionCheck();
+});
+
 void initMonacoEditor()
   .catch((err) => {
     if (monacoRootEl) {
@@ -305,6 +575,14 @@ void initMonacoEditor()
     appendOutput(`[warn] Monaco failed to load; fallback editor enabled: ${err.message}\n`);
   })
 
-if (currentProblemId != null) {
-  void loadProblem(currentProblemId);
-}
+void refreshProblemList()
+  .then(() => {
+    if (currentProblemId != null) {
+      return loadProblem(currentProblemId);
+    }
+    return undefined;
+  })
+  .catch((err) => {
+    setStatus(`Problem list failed: ${err.message}`);
+    appendOutput(`[error] ${err.message}\n`);
+  });

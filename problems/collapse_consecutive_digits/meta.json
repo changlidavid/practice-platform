@@ -1,0 +1,6 @@
+{
+  "slug": "collapse_consecutive_digits",
+  "title": "Collapse Consecutive Digits",
+  "entry_function": "collapse",
+  "evaluation_mode": "function_json"
+}

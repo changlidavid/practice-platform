@@ -1,0 +1,893 @@
+{
+  "source_roots": [
+    "/home/changli/Desktop/9021tasks/9021",
+    "/home/changli/Desktop/9021tasks/final"
+  ],
+  "output_root": "/home/changli/Desktop/9021tasks/structured",
+  "dry_run": true,
+  "force": false,
+  "public_count": 3,
+  "counts": {
+    "migrated": 0,
+    "would_migrate": 122,
+    "skipped": 0,
+    "failed": 3
+  },
+  "results": [
+    {
+      "source": "9021/sample_1.py",
+      "slug": "9021__sample_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/9021__sample_1",
+      "error": null
+    },
+    {
+      "source": "9021/sample_2.py",
+      "slug": "9021__sample_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/9021__sample_2",
+      "error": null
+    },
+    {
+      "source": "9021/sample_3.py",
+      "slug": "9021__sample_3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/9021__sample_3",
+      "error": null
+    },
+    {
+      "source": "9021/sample_4.py",
+      "slug": "9021__sample_4",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/9021__sample_4",
+      "error": null
+    },
+    {
+      "source": "9021/sample_5.py",
+      "slug": "",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No top-level function definition found."
+    },
+    {
+      "source": "9021/sample_6.py",
+      "slug": "9021__sample_6",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/9021__sample_6",
+      "error": null
+    },
+    {
+      "source": "9021/sample_7.py",
+      "slug": "9021__sample_7",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/9021__sample_7",
+      "error": null
+    },
+    {
+      "source": "final/1/question_1.py",
+      "slug": "final__1__question_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1__question_1",
+      "error": null
+    },
+    {
+      "source": "final/1/question_2.py",
+      "slug": "final__1__question_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1__question_2",
+      "error": null
+    },
+    {
+      "source": "final/1/question_3.py",
+      "slug": "final__1__question_3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1__question_3",
+      "error": null
+    },
+    {
+      "source": "final/1/question_4.py",
+      "slug": "final__1__question_4",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1__question_4",
+      "error": null
+    },
+    {
+      "source": "final/1/question_5.py",
+      "slug": "final__1__question_5",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1__question_5",
+      "error": null
+    },
+    {
+      "source": "final/1/question_6.py",
+      "slug": "final__1__question_6",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1__question_6",
+      "error": null
+    },
+    {
+      "source": "final/1/question_7.py",
+      "slug": "final__1__question_7",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1__question_7",
+      "error": null
+    },
+    {
+      "source": "final/1/question_8.py",
+      "slug": "final__1__question_8",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1__question_8",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_1.py",
+      "slug": "final__1754923206907syv__item__sample1__question_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample1__question_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_2.py",
+      "slug": "final__1754923206907syv__item__sample1__question_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample1__question_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_3.py",
+      "slug": "final__1754923206907syv__item__sample1__question_3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample1__question_3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_4.py",
+      "slug": "final__1754923206907syv__item__sample1__question_4",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample1__question_4",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_5.py",
+      "slug": "final__1754923206907syv__item__sample1__question_5",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample1__question_5",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_6.py",
+      "slug": "final__1754923206907syv__item__sample1__question_6",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample1__question_6",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_7.py",
+      "slug": "final__1754923206907syv__item__sample1__question_7",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample1__question_7",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample1/question_8.py",
+      "slug": "final__1754923206907syv__item__sample1__question_8",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample1__question_8",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_1.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_2.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_3.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_4.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_4",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_4",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_5.py",
+      "slug": "",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No top-level function definition found."
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_6.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_6",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_6",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/sample2/sample_7.py",
+      "slug": "final__1754923206907syv__item__sample2__sample_7",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__sample2__sample_7",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T1_1.py",
+      "slug": "final__1754923206907syv__item__rounding__21t1_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__rounding__21t1_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T1_2.py",
+      "slug": "final__1754923206907syv__item__rounding__21t1_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__rounding__21t1_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T2_1.py",
+      "slug": "final__1754923206907syv__item__rounding__21t2_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__rounding__21t2_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T2_2.py",
+      "slug": "final__1754923206907syv__item__rounding__21t2_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__rounding__21t2_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_rounding/21T3_22T3_23T2.py",
+      "slug": "final__1754923206907syv__item__rounding__21t3_22t3_23t2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__rounding__21t3_22t3_23t2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/20T3_1.py",
+      "slug": "final__1754923206907syv__item__item__20t3_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/20T3_2.py",
+      "slug": "final__1754923206907syv__item__item__20t3_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T1_1.py",
+      "slug": "final__1754923206907syv__item__item__21t1_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t1_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T2_1.py",
+      "slug": "final__1754923206907syv__item__item__21t2_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t2_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T3_22T3_23T2_1.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T3_22T3_23T2_3.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/21T3_22t3_23T2_2.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/22T1.py",
+      "slug": "final__1754923206907syv__item__item__22t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t2_25t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/3.py",
+      "slug": "final__1754923206907syv__item__item__3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/4.py",
+      "slug": "final__1754923206907syv__item__item__4",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__4",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_列表/SAMPLE.py",
+      "slug": "final__1754923206907syv__item__item__sample",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__sample",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/21T2.py",
+      "slug": "final__1754923206907syv__item__item__21t2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__23t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_字典题/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t2_25t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/3.py",
+      "slug": "final__1754923206907syv__item__item__3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/4.py",
+      "slug": "final__1754923206907syv__item__item__4",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__4",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/5.py",
+      "slug": "final__1754923206907syv__item__item__5",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__5",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/中等_质数/6.py",
+      "slug": "final__1754923206907syv__item__item__6",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__6",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/21T2.py",
+      "slug": "final__1754923206907syv__item__dfs__21t2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__dfs__21t2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/23T1.py",
+      "slug": "final__1754923206907syv__item__dfs__23t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__dfs__23t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/24T3.py",
+      "slug": "final__1754923206907syv__item__dfs__24t3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__dfs__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/SAMPLE.py",
+      "slug": "final__1754923206907syv__item__dfs__sample",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__dfs__sample",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_dfs/_a.py",
+      "slug": "final__1754923206907syv__item__dfs__a",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__dfs__a",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/21T1.py",
+      "slug": "final__1754923206907syv__item__item__21t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/21T2.py",
+      "slug": "final__1754923206907syv__item__item__21t2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/21T3_22T3_23T2_1.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/21T3_22T3_23T2_2.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/22T1.py",
+      "slug": "final__1754923206907syv__item__item__22t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t2_25t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__23t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/SAMPLE.py",
+      "slug": "final__1754923206907syv__item__item__sample",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__sample",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/_a.py",
+      "slug": "final__1754923206907syv__item__item__a",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__a",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/困难_矩阵/_b.py",
+      "slug": "final__1754923206907syv__item__item__b",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__b",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/21T1.py",
+      "slug": "final__1754923206907syv__item__item__21t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/21T3_22T3_23T2.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_字符串/SAMPLE.py",
+      "slug": "final__1754923206907syv__item__item__sample",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__sample",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/20T3.py",
+      "slug": "final__1754923206907syv__item__item__20t3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/21T1.py",
+      "slug": "final__1754923206907syv__item__item__21t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/21T2.py",
+      "slug": "final__1754923206907syv__item__item__21t2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/22T1.py",
+      "slug": "final__1754923206907syv__item__item__22t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t2_25t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__23t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/SAMPLE_1.py",
+      "slug": "final__1754923206907syv__item__item__sample_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__sample_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/SAMPLE_2.py",
+      "slug": "final__1754923206907syv__item__item__sample_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__sample_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/p1.py",
+      "slug": "final__1754923206907syv__item__item__p1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__p1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/p2.py",
+      "slug": "final__1754923206907syv__item__item__p2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__p2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_打印输出/p4.py",
+      "slug": "final__1754923206907syv__item__item__p4",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__p4",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/1.py",
+      "slug": "final__1754923206907syv__item__item__1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/2.py",
+      "slug": "final__1754923206907syv__item__item__2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/20T3.py",
+      "slug": "final__1754923206907syv__item__item__20t3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/22T1_1.py",
+      "slug": "final__1754923206907syv__item__item__22t1_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t1_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/22T1_2.py",
+      "slug": "final__1754923206907syv__item__item__22t1_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t1_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t2_25t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__23t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/3.py",
+      "slug": "final__1754923206907syv__item__item__3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__3",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/4.py",
+      "slug": "final__1754923206907syv__item__item__4",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__4",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/5.py",
+      "slug": "final__1754923206907syv__item__item__5",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__5",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/6.py",
+      "slug": "final__1754923206907syv__item__item__6",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__6",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_数字题/7.py",
+      "slug": "final__1754923206907syv__item__item__7",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__7",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/10.py",
+      "slug": "final__1754923206907syv__item__item__10",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__10",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/20T3_1.py",
+      "slug": "final__1754923206907syv__item__item__20t3_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/20T3_2.py",
+      "slug": "final__1754923206907syv__item__item__20t3_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__20t3_2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/21T1.py",
+      "slug": "final__1754923206907syv__item__item__21t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/21T2.py",
+      "slug": "final__1754923206907syv__item__item__21t2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/21T3_22T3_23T2.py",
+      "slug": "final__1754923206907syv__item__item__21t3_22t3_23t2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__21t3_22t3_23t2",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/22T1.py",
+      "slug": "final__1754923206907syv__item__item__22t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/22T2_25T1.py",
+      "slug": "final__1754923206907syv__item__item__22t2_25t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__22t2_25t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/23T1.py",
+      "slug": "final__1754923206907syv__item__item__23t1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__23t1",
+      "error": null
+    },
+    {
+      "source": "final/1754923206907sYV/期末整理/简单_文件读写/24T3.py",
+      "slug": "final__1754923206907syv__item__item__24t3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__1754923206907syv__item__item__24t3",
+      "error": null
+    },
+    {
+      "source": "final/2/sample_1.py",
+      "slug": "final__2__sample_1",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_1",
+      "error": null
+    },
+    {
+      "source": "final/2/sample_2.py",
+      "slug": "final__2__sample_2",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_2",
+      "error": null
+    },
+    {
+      "source": "final/2/sample_3.py",
+      "slug": "final__2__sample_3",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_3",
+      "error": null
+    },
+    {
+      "source": "final/2/sample_4.py",
+      "slug": "final__2__sample_4",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_4",
+      "error": null
+    },
+    {
+      "source": "final/2/sample_5.py",
+      "slug": "",
+      "status": "failed",
+      "output_dir": null,
+      "error": "No top-level function definition found."
+    },
+    {
+      "source": "final/2/sample_6.py",
+      "slug": "final__2__sample_6",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_6",
+      "error": null
+    },
+    {
+      "source": "final/2/sample_7.py",
+      "slug": "final__2__sample_7",
+      "status": "would_migrate",
+      "output_dir": "/home/changli/Desktop/9021tasks/structured/final__2__sample_7",
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "slug": "remove_consecutive_duplicates",
+  "title": "9021  Sample 1",
+  "entry_function": "remove_consecutive_duplicates",
+  "evaluation_mode": "function_json"
+}

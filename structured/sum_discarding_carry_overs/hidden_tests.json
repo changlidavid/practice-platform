@@ -1,0 +1,135 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "case-1",
+      "args": [
+        0
+      ],
+      "kwargs": {},
+      "expected": 0
+    },
+    {
+      "id": "case-2",
+      "args": [
+        3,
+        4
+      ],
+      "kwargs": {},
+      "expected": 7
+    },
+    {
+      "id": "case-3",
+      "args": [
+        4,
+        6
+      ],
+      "kwargs": {},
+      "expected": 0
+    },
+    {
+      "id": "case-4",
+      "args": [
+        7,
+        5
+      ],
+      "kwargs": {},
+      "expected": 2
+    },
+    {
+      "id": "case-5",
+      "args": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "kwargs": {},
+      "expected": 6
+    },
+    {
+      "id": "case-6",
+      "args": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "kwargs": {},
+      "expected": 0
+    },
+    {
+      "id": "case-7",
+      "args": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "kwargs": {},
+      "expected": 5
+    },
+    {
+      "id": "case-8",
+      "args": [
+        91,
+        19
+      ],
+      "kwargs": {},
+      "expected": 0
+    },
+    {
+      "id": "case-9",
+      "args": [
+        38,
+        49
+      ],
+      "kwargs": {},
+      "expected": 77
+    },
+    {
+      "id": "case-10",
+      "args": [
+        58,
+        59
+      ],
+      "kwargs": {},
+      "expected": 7
+    },
+    {
+      "id": "case-11",
+      "args": [
+        2314,
+        5968
+      ],
+      "kwargs": {},
+      "expected": 7272
+    },
+    {
+      "id": "case-12",
+      "args": [
+        3452,
+        2324,
+        36372,
+        75401
+      ],
+      "kwargs": {},
+      "expected": 6449
+    },
+    {
+      "id": "case-13",
+      "args": [
+        9054,
+        3,
+        3577,
+        78,
+        452563
+      ],
+      "kwargs": {},
+      "expected": 454055
+    }
+  ]
+}

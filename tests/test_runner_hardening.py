@@ -89,3 +89,14 @@ def test_truncated_output_does_not_change_status_mapping(isolated_env, monkeypat
         assert result.status == "fail"
     finally:
         conn.close()
+
+
+def test_build_container_cmd_normalizes_python_interpreter_and_rewrites_workspace_paths():
+    cmd = ["/usr/local/bin/python3", "-I", "-m", "doctest", "/tmp/run/solution.py"]
+    built = runner._build_container_cmd(cmd, cwd=runner.Path("/tmp/run"))
+    assert built[0:2] == ["docker", "run"]
+    assert "python:3.12-slim" in built
+    image_index = built.index("python:3.12-slim")
+    container_exec = built[image_index + 1 :]
+    assert container_exec[0] == "python3"
+    assert "/workspace/solution.py" in container_exec

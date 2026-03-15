@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-1",
+    "input": "expression = '12'",
+    "output": "12"
+  },
+  {
+    "id": "example-2",
+    "input": "expression = '+ 12 4'",
+    "output": "16"
+  },
+  {
+    "id": "example-3",
+    "input": "expression = '- + 12 4 10'",
+    "output": "6"
+  }
+]

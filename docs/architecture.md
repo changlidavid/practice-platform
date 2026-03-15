@@ -6,7 +6,7 @@ The system is an offline-first Python practice platform composed of:
 - a FastAPI web server
 - a SQLite database
 - a bundle importer
-- a doctest execution runner
+- a dual-mode execution runner (legacy doctest + hidden JSON function evaluator)
 - Docker packaging for reproducible deployment
 
 All runtime state is stored under `PRACTICE_HOME` (for example `/data` in Docker, `.practice/` locally).
@@ -31,7 +31,7 @@ At startup, the app:
 ### 2. SQLite Database (`app/db.py`)
 
 SQLite is the single persistent store for:
-- problem metadata and doctests
+- problem metadata (doctest and function-json modes)
 - imported bundle snapshots and bundle assets
 - run attempts and run outputs
 - users, OTP records, sessions
@@ -46,8 +46,10 @@ Schema migrations are handled in code by:
 
 Importer behavior:
 - recursively discovers `.py` problem files plus non-Python assets from bundle directories
+- discovers function-json problem directories (`meta.json`, `statement.md`, `starter.py`, examples/tests JSON)
 - computes snapshot hash of all files for deduplication
-- extracts module doctests and descriptions
+- extracts module doctests/descriptions for legacy problems
+- validates metadata and hidden/public JSON files for function-json problems
 - upserts problems and bundle assets into DB
 
 Bundle selection:
@@ -56,14 +58,15 @@ Bundle selection:
 
 Default local bundle is `9021/`.
 
-### 4. Doctest Runner (`app/runner.py`)
+### 4. Runner (`app/runner.py`)
 
 Runner behavior:
 - builds a temporary attempt workspace under `runs/`
-- composes executable module with immutable doctest text from DB
-- executes Python doctest in a subprocess
+- dispatches by `evaluation_mode`
+  - `doctest`: composes immutable doctest module and runs `python -m doctest`
+  - `function_json`: imports submitted function and runs hidden JSON cases in isolated subprocess
 - enforces timeout and output-size caps
-- parses pass/fail counts
+- parses pass/fail counts and failure details
 - stores attempt result and updates user/problem stats
 
 The same runner is reused by both:

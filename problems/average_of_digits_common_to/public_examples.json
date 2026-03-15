@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-empty",
+    "input": "numbers = ()",
+    "output": "-1"
+  },
+  {
+    "id": "example-no-common-digit",
+    "input": "numbers = (0, 12, 456)",
+    "output": "-1"
+  },
+  {
+    "id": "example-common-average",
+    "input": "numbers = (234, 345, 2345, 3456, 112233445566)",
+    "output": "3.5"
+  }
+]

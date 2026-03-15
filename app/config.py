@@ -32,7 +32,9 @@ def load_env_file(repo_root: Path) -> None:
             continue
         if len(value) >= 2 and value[0] == value[-1] and value[0] in {"'", '"'}:
             value = value[1:-1]
-        os.environ.setdefault(key, value)
+        # `.env` is the local source of truth for this app. Apply its values
+        # on startup so bundle-path changes take effect after a restart.
+        os.environ[key] = value
 
 
 def get_paths() -> Paths:

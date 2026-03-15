@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "cases": [
+    {
+      "id": "basic-1",
+      "args": [[2, 7, 11, 15], 9],
+      "kwargs": {},
+      "expected": [0, 1]
+    },
+    {
+      "id": "basic-2",
+      "args": [[3, 2, 4], 6],
+      "kwargs": {},
+      "expected": [1, 2]
+    },
+    {
+      "id": "negatives",
+      "args": [[-3, 4, 3, 90], 0],
+      "kwargs": {},
+      "expected": [0, 2]
+    }
+  ]
+}

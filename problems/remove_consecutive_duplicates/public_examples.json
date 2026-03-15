@@ -1,0 +1,17 @@
+[
+  {
+    "id": "example-empty",
+    "input": "word = ''",
+    "output": "''"
+  },
+  {
+    "id": "example-single-run",
+    "input": "word = 'aaabbbbbaaa'",
+    "output": "'aba'"
+  },
+  {
+    "id": "example-mixed-runs",
+    "input": "word = 'abcaaabbbcccabc'",
+    "output": "'abcabcabc'"
+  }
+]

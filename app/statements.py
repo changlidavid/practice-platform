@@ -129,9 +129,17 @@ def ensure_statement(paths: Paths, problem_row: dict[str, object] | object) -> P
         return path
 
     path.parent.mkdir(parents=True, exist_ok=True)
-    statement = generate_statement_from_template(
-        str(problem_row["template_code"]),
-        slug,
-    )
+    try:
+        statement_md_raw = problem_row["statement_md"]
+    except (KeyError, IndexError, TypeError):
+        statement_md_raw = ""
+    statement_md = str(statement_md_raw or "").strip()
+    if statement_md:
+        if not statement_md.endswith("\n"):
+            statement_md += "\n"
+        path.write_text(statement_md, encoding="utf-8")
+        return path
+
+    statement = generate_statement_from_template(str(problem_row["template_code"]), slug)
     path.write_text(statement.markdown, encoding="utf-8")
     return path

@@ -13,6 +13,7 @@ runs/
 # Build / packaging
 *.egg-info/
 practice_cli.egg-info/
+.practice.bak/
 
 # Test cache
 .pytest_cache/

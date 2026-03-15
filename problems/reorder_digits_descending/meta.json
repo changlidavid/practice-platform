@@ -1,0 +1,6 @@
+{
+  "slug": "reorder_digits_descending",
+  "title": "Reorder Digits Descending",
+  "entry_function": "reorder",
+  "evaluation_mode": "function_json"
+}
